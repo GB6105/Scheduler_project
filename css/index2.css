@@ -1,0 +1,167 @@
+:root{
+    --background-color: #edebeb;
+    --input-container-color: #f3f3f3;
+    --theme-color: #fef8d9;
+    --placeholder-color: #8d8383;
+
+    /* 사이즈 */
+    --frame-size-width: 440px;
+    --frame-size-height: 340px;
+    --container-size-width: 350px;
+    --container-size-height: 50px;
+}   
+
+body{
+    /* 속성부여 */
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    /* 디자인 */
+    height: 600px;
+    background-color: var(--background-color);
+}
+
+/* 제목 */
+#title{
+    width: 100%;
+    font-size: 58px;
+    text-align: center;
+    color: black;
+    
+}
+
+/* 로그인 프레임 */
+#bodyFrame{
+    /* 속성 부여 */
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    /* 디자인 */
+    width: var(--frame-size-width);
+    height: var(--frame-size-height);
+    padding:20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+/* 입력값 프레임 */
+.inputContainer{
+    /* 속성부여 */
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    
+    
+    /* 디자인 */
+    width: var(--container-size-width);
+    height: var(--container-size-height);
+    border-radius: 15px;
+    border:none;
+    background-color: var(--input-container-color);
+}
+
+.icon{
+    margin:0;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    border:none;
+    background-color: var(--theme-color);
+}
+
+
+input{
+    /* 속성부여 */
+    display: flex;
+    align-items: center;
+
+    /* 디자인 */
+    flex-grow:1;
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    border:none;
+    margin:0;
+    text-indent: 10px;
+    text-size-adjust: 36px;
+}
+input::placeholder{
+    color: var(--placeholder-color);
+    font-size: 20px;
+}
+
+#inputIDcontainer{
+    margin-top: 10px;
+}
+#inputPWcontainer{
+    margin-top: 20px;
+}
+
+/* 버튼 디자인(로그인, 회원가입) */
+button{
+    /* 속성부여 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* 디자인 */
+    width: var(--container-size-width);
+    height: var(--container-size-height);
+    border-radius: 15px;
+    border:none;
+    background-color: var(--theme-color);
+    font-size: 24px;
+}
+
+#loginButton{
+    margin-top: 20px;
+}
+
+#seperateLine{
+    width: 95%;
+    border: 1px solid black;
+    margin-top:15px;
+}
+
+/* 계정 옵션 파트(회원가입버튼, ID/PW 찾기 버튼) */
+#optionContainer{
+    /* 속성부여 */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    /* 디자인 */
+    width: var(--container-size-width);
+    height: fit-content;
+}
+
+#signUpButton{
+    margin-top:15px;   
+}
+
+/* 계정 옵션 디자인(ID,PW찾기 */
+#findingOption{
+    /* 속성부여 */
+    display: flex;
+    justify-content: space-between;
+
+    /* 디자인 */
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+
+.findingButton{
+    width: fit-content;
+    height:30px;
+    font-size:12px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
