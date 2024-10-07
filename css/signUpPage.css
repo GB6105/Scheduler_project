@@ -1,0 +1,27 @@
+:root{
+    --background-color: #edebeb;
+    --input-container-color: #f3f3f3;
+    --theme-color: #fef8d9;
+    --placeholder-color: #8d8383;
+
+    --signup-frame-size-height: 440px;
+}  
+
+#bodyFrame{
+    height: var(--signup-frame-size-height);
+}
+
+#deptAndPosition{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    
+    
+    /* 디자인 */
+    width: var(--container-size-width);
+    height: var(--container-size-height);
+    border-radius: 15px;
+    border:none;
+    
+}
+

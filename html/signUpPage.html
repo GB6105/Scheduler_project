@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/accountCommon.css">
+    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/signUpPage.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id = "title">Sign Up Page</h1>
+    <div id = "bodyFrame">
+        <form id = "inputForm">
+            <input class = "inputContainer" id = "inputId" placeholder = "ID를 입력해주세요(2~10글자)">
+            <input class = "inputContainer" id = "inputPw" placeholder = "비밀번호를 입력해주세요(8~16글자)">
+            <input class = "inputContainer" id = "inputName" placeholder = "이름을 입력해주세요">
+            <div id = "deptAndPosition">
+                <select class = "select" id = "departmentSelect">
+                    <option value = ""> 부서</option>
+                    <option value = "manageTeam"> 경영</option>
+                    <option value = "designTeam"> 디자인</option>
+                </select>
+                <select class = "select" id = "positionSelect">
+                    <option value ="">직책</option>
+                    <option value = "leader">팀장</option>
+                    <option value = "member">팀원</option>
+                </select>
+            </div>
+            
+            <div id = "email">
+                <input class = "inputContainer" id = "inputEmail">
+                <select class = "select" id = "domainSelect">
+
+                </select>
+            </div>
+            <button type = "submit" id = "confrimButton">Confirm</button>
+
+        </form>
+
+    </div>
+    
+</body>
+</html>

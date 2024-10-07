@@ -1,114 +1,10 @@
-:root{
-    --background-color: #edebeb;
-    --input-container-color: #f3f3f3;
-    --theme-color: #fef8d9;
-    --placeholder-color: #8d8383;
-
-    /* 사이즈 */
-    --frame-size-width: 440px;
-    --frame-size-height: 340px;
-    --container-size-width: 350px;
-    --container-size-height: 50px;
-}   
-
-body{
-    /* 속성부여 */
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    
-    /* 디자인 */
-    height: 600px;
-    background-color: var(--background-color);
-}
-
-/* 제목 */
-#title{
-    width: 100%;
-    font-size: 64px;
-    text-align: center;
-    color: black;
-    
-}
-
-/* 로그인 프레임 */
-#bodyFrame{
-    /* 속성 부여 */
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-
-    /* 디자인 */
-    width: var(--frame-size-width);
-    height: var(--frame-size-height);
-    padding:20px;
-    background-color: white;
-    border-radius: 20px;
-}
-
-/* 입력값 프레임 */
-.inputContainer{
-    /* 속성부여 */
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    
-    /* 디자인 */
-    width: var(--container-size-width);
-    height: var(--container-size-height);
-    border-radius: 15px;
-    border:none;
-    background-color: var(--input-container-color);
-}
-
-/* 인풋 컨테이너 공통 디자인 */
-/* .icon{
-    margin:0;
-    width: 10%;
-    height: 100%;
-    border-radius: 15px;
-    border:none;
-    background-color: var(--theme-color);
-} */
-
 .icon{
     margin:0;
     height: 100%;
+    aspect-ratio: 1/1;
     border-radius: 15px;
     border:none;
     background-color: var(--theme-color);
-    position:relative;
-}
-.icon:before{
-    content: "";
-    display: block;
-    padding-right: 100%; /* 높이에 맞춰 너비 설정, 정사각형 */
-    width: 100%; /* 부모 요소의 너비에 맞춤 */
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-input{
-    /* 속성부여 */
-    display: flex;
-    align-items: center;
-
-    /* 디자인 */
-    margin:0;
-    width: 80%;
-    height: 100%;
-    background-color: rgba(0,0,0,0);
-    border:none;
-    text-indent: 10px;
-    text-size-adjust: 36px;
-}
-input::placeholder{
-    color: var(--placeholder-color);
-    font-size: 20px;
 }
 
 #inputIDcontainer{
@@ -116,23 +12,6 @@ input::placeholder{
 }
 #inputPWcontainer{
     margin-top: 20px;
-}
-
-/* 버튼 디자인(로그인, 회원가입) */
-button{
-    /* 속성부여 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    /* 디자인 */
-    width: var(--container-size-width);
-    height: var(--container-size-height);
-    border-radius: 15px;
-    border:none;
-    background-color: var(--theme-color);
-    font-size: 24px;
 }
 
 #loginButton{
