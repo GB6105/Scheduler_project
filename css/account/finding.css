@@ -1,0 +1,17 @@
+#email{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    height:var(--container-size-height);
+    border-radius: var(--border-radius-input);
+    margin-bottom: 15px;
+    background-color: var(--input-container-color);
+}
+
+#inputEmail{
+    height: var(--container-size-height);
+    width: 40%;
+    border:none;
+    padding:0;
+}

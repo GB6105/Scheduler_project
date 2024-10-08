@@ -1,10 +1,19 @@
 :root{
+    /* 색깔 */
     --background-color: #edebeb;
     --input-container-color: #f3f3f3;
     --theme-color: #fef8d9;
     --placeholder-color: #8d8383;
 
+    /* 사이즈 */
+    --frame-size-width: 440px;
+    --frame-size-height: 340px;
+    --container-size-width: 350px;
+    --container-size-height: 50px;
+    --border-radius-input: 10px;
     --signup-frame-size-height: 440px;
+    --border-radius-input: 10px;
+
 }  
 
 #bodyFrame{
@@ -15,13 +24,42 @@
     display:flex;
     flex-wrap: wrap;
     align-items: center;
-    
+    justify-content: space-between;
+    margin-bottom: 15px;
     
     /* 디자인 */
     width: var(--container-size-width);
     height: var(--container-size-height);
-    border-radius: 15px;
+    border-radius: var(--border-radius-input);
     border:none;
     
 }
+.inputContainer{
+    margin-bottom: 15px;
+}
 
+.select{
+    width: 45%;
+    height:var(--container-size-height);
+    border-radius: var(--border-radius-input);
+    border:none;
+    background-color: var(--input-container-color);
+}
+
+#email{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    height:var(--container-size-height);
+    border-radius: var(--border-radius-input);
+    margin-bottom: 15px;
+    background-color: var(--input-container-color);
+}
+
+#inputEmail{
+    height: var(--container-size-height);
+    width: 40%;
+    border:none;
+    padding:0;
+}

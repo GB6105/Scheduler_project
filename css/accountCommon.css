@@ -9,6 +9,7 @@
     --frame-size-height: 340px;
     --container-size-width: 350px;
     --container-size-height: 50px;
+    --border-radius-input: 10px;
 }   
 
 body{
@@ -60,7 +61,7 @@ body{
     /* 디자인 */
     width: var(--container-size-width);
     height: var(--container-size-height);
-    border-radius: 15px;
+    border-radius:var(--border-radius-input);
     border:none;
     background-color: var(--input-container-color);
 }
@@ -106,7 +107,7 @@ button{
     /* 디자인 */
     width: var(--container-size-width);
     height: var(--container-size-height);
-    border-radius: 15px;
+    border-radius: var(--border-radius-input);
     border:none;
     background-color: var(--theme-color);
     font-size: 24px;
