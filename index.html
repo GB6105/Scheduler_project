@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/account/accountCommon.css">
     <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/index.css">
-    <title>Document</title>
+    <title>scheduler_project</title>
 </head>
 <body>
     <h1 id = "title">Scheduler for Team</h1>
@@ -19,14 +19,14 @@
                 <div class = "icon"></div>
                 <input id = "inputPW" placeholder="PW">
             </div>
-            <button type = "submit" id = "loginButton"> login</button>
+            <button type = "submit" id = "loginButton" onclick = "location.href = '/scheduler_project/html/scheduler/schedulerMain.html'"> login</button>
         </form>
         <div id = "seperateLine"></div>
         <div id = "optionContainer">
             <button id = "signUpButton" onclick = "location.href = '/scheduler_project/html/signUpPage.html'">sign up</button>
             <div id = "findingOption">
                 <button class = "findingButton" onclick = "location.href = '/scheduler_project/html/account/IDfindingPage.html'">ID 찾기</button>
-                <button class = "findingButton">PW 찾기</button>
+                <button class = "findingButton" onclick = "location.href = '/scheduler_project/html/account/PWfindingPage.html'">PW 찾기</button>
             </div>
         </div>
     </div>

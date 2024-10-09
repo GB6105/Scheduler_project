@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/scheduler/scheduler.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav id = "sideMenu"></nav>
+    <nav id = "sideMenuUnfolded">
+        <div id = "profileImg"></div>
+        <article id = "profileContainer">
+            <div class = "infoContainer" id = "displayID">사용자 ID</div>
+            <div class = "infoContainer" id = "displayEmail">userEmail@email.com</div>
+            <div class = "infoContainer" id = "displayName">user_name_1</div>
+            <div class = "infoContainer" id = "displayDepartment">부서: 디자인</div>
+            <div class = "infoContainer" id = "displayPosition">직책: 팀원</div>
+        </article>
+        <button id = "infoFixButton">정보 수정</button>
+    </nav>
+    <article id = "scheduler">
+        <div id = "header">
+            <div id = "yearAndMonthDisplay">
+                <div id = "yearContainer">
+                    <button class = "changeYearButton" id = "lastYearButton"></button>
+                    <div id = "displayYear">2024</div>
+                    <button class = "changeYearButton" id = "nextYearButton"></button>
+                </div>
+                <div id = "monthContainer"> 10월</div>
+            </div>
+            <div id = "monthList">1 2 3 4 5 6 7 8 9 10 11 12
+                <!-- js로 반복 문 만들어서 버튼 집어넣어주기 -->
+            </div>
+        </div>
+        <div id = "schedulerMainFrame">
+            <!-- js로 반복문 만들어서 버튼 집어넣어주기 -->
+        </div>
+    </article>
+    <nav id = "sideMenu"></nav>
+</body>
+</html>

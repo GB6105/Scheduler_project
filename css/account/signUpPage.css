@@ -20,7 +20,10 @@
     height: var(--signup-frame-size-height);
 }
 
+
+/* 부서 빛 직책 드롭다운 메뉴 스타일 */
 #deptAndPosition{
+    /* 속성 부여 */
     display:flex;
     flex-wrap: wrap;
     align-items: center;
@@ -38,6 +41,7 @@
     margin-bottom: 15px;
 }
 
+/* 드롭다운 메뉴 스타일 지정 */
 .select{
     width: 45%;
     height:var(--container-size-height);
@@ -46,11 +50,15 @@
     background-color: var(--input-container-color);
 }
 
+/* 이메일 입력 칸 */
 #email{
+    /* 속성 부여 */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    /* align-items: center;/ */
     
+    /* 디자인 */
     height:var(--container-size-height);
     border-radius: var(--border-radius-input);
     margin-bottom: 15px;
@@ -58,8 +66,8 @@
 }
 
 #inputEmail{
+    width: 30%;
     height: var(--container-size-height);
-    width: 40%;
     border:none;
     padding:0;
 }

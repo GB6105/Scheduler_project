@@ -1,17 +1,57 @@
+:root{
+    /* 색깔 */
+    --background-color: #edebeb;
+    --input-container-color: #f3f3f3;
+    --theme-color: #fef8d9;
+    --placeholder-color: #8d8383;
+
+    /* 사이즈 */
+    --frame-size-width: 440px;
+    --frame-size-height: 340px;
+    --container-size-width: 350px;
+    --container-size-height: 50px;
+    --border-radius-input: 10px;
+    --signup-frame-size-height: 440px;
+    --border-radius-input: 10px;
+
+}  
+
 #email{
+    /* 속성 부여 */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    align-items: center;
+
+    /* 디자인 */
+    width: var(--container-size-width);
     height:var(--container-size-height);
     border-radius: var(--border-radius-input);
     margin-bottom: 15px;
     background-color: var(--input-container-color);
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
+
+/* 이메일 입력 칸 */
 #inputEmail{
-    height: var(--container-size-height);
     width: 40%;
+    height: var(--container-size-height);
     border:none;
     padding:0;
+
+}
+
+/* 도메인 선택 메뉴 스타일*/
+.select{
+    width: 45%;
+    height:var(--container-size-height);
+    border:none;
+    border-radius: var(--border-radius-input);
+    background-color: var(--input-container-color);
+}
+
+#confrimButton{
+    margin-top: 20px;
 }
