@@ -1,10 +1,12 @@
 :root{
+    /* 색상 */
     --background-color: #edebeb;
     --input-container-color: #f3f3f3;
     --theme-color: #fef8d9;
     --placeholder-color: #8d8383;
     --background-color-sidemenu: #d9d9d9;
 
+    /* 사이즈 */
     --scheduler-body-size-width: 1610px;
 }   
 
@@ -24,14 +26,15 @@ body{
 nav{
     width:155px;
     height: 100%;
-    background-color: var(--background-color);
+    background-color: var(--background-color-sidemenu);
     border:none;
 
     /*임시 설정*/
-    border:1px solid black;
+    border:none;
+    /* border:1px solid black; */
 }
 
-/* 스케쥴러 메인 바디 스타일 지정 */
+/* 스케쥴러 페이지 스타일 지정 */
 #scheduler{
     /* 속성부여 */
     display: flex;
@@ -44,21 +47,25 @@ nav{
     /* 20241018 */
 }
 
+/* 연도,월 표시  */
 #header{
+    /* 속성 */
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    /* justify-content: center; */
 
+    /* 디자인 */
     width:100%;
     height: 130px;
     border:none;
 }
 
 #yearAndMonthDisplay{
+    /* 속성 */
     display: flex;
     justify-content: center;
 
+    /* 디자인 */
     width: 100%;
     height: 80px;
     border:none;
@@ -68,56 +75,91 @@ nav{
 }
 
 #yearContainer{
+    /* 속성 */
     display: flex;
     justify-content: space-around;
+
+    /* 디자인 */
     width: 130px;
     height: 100%;
     border:none;
     border:1px solid black;
 }
 
+/* 연도 변경 버튼 공통 스타일 */
 .changeYearButton{
     width: 10px;
     height: 20px;
     background-color: #8d8383;
 }
 
-#schedulerMainFrame{
-    width: 100%;
-    height: 100%;
-    background-color: #edebeb;
-    border: 1px solid black;
-}
-
+/* 월 변경 버튼 공통 스타일 */
 #monthList{
     display: flex;
     text-align: center;
     height: 40px;
 }
 
+/* 사이드메뉴 활성화(비활성화) 버튼 */
+.sideMenuButton{
+    /* 속성 */
+    align-self: flex-start;
+    
+    /* 디자인 */
+    width: 40px;
+    height: 40px;
+    border:none;
+    /* background-color: var(--background-color-sidemenu); */
+    background-color: rgba(0,0,0,0);
+    background-image: url("/scheduler_project/asset/icon/three_line_menu.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    /* 임시 설정 */
+    /* border:1px solid black; */
+}
+
+/* 사이드메뉴(펼쳐짐) 스타일 설정 */
 #sideMenuUnfolded{
     display: flex;
+    display:none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
-    width: 400px;
+    
+    width: 300px;
     height: 100%;
+    border:none;
     background-color: var(--background-color-sidemenu);
 }
 
+
+/* 프로필 이미지  */
+#profileImg{
+    margin:0;
+    height: 20%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border:none;
+    background-color: white;
+}
+/* 회원 정보 표시 칸 */
 #profileContainer{
+    /* 속성 */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-
-    width: 200px;
-    height: 300PX;
+    
+    /* 디자인 */
+    width: 70%;
+    height: 35%;
+    padding-top: 20px;
     background-color: white;
     border: none;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-radius: 15px;
+    margin-bottom: 80px;
 }
 
 .infoContainer{
@@ -126,11 +168,52 @@ nav{
     text-align: center;
 }
 
+#displayID{
+    font-size: 20px;
+}
+
+#displayEmail{
+    width: 100%;
+}
+
+/* 정보 수정 버튼 */
 #infoFixButton{
-    width:200px;
+    width:100%;
     height: 50px;
     border:none;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: var(--theme-color);
+}
+
+/* 회원 탈퇴 버튼 */
+#resignButton{
+    width: fit-content;
+    height: fit-content;
+    border:none;
+    font-size: 12px;
+    background-color: rgba(0,0,0,0);
+    margin-bottom: 20px;;
+}
+
+/* 스케쥴러 스타일 설정 */
+
+#schedulerMainFrame{
+    /* 속성 */
+    display: flex;
+    flex-wrap: wrap;
+
+    /* 디자인 */
+    width: 100%;
+    height: 100%;
+    background-color: #edebeb;
+    border: 1px solid black;
+}
+
+/* 날짜 칸 스타일 설정 */
+#dayContainer{
+    width: 200px;
+    height: 180px;
+    border: 1px solid black;
+    background-color: white;
 }
