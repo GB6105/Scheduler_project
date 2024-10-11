@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/scheduler/scheduler.css">
+    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/account/signUpPage.css">
+    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/account/accountElement.css">
     <title>Document</title>
 
 </head>
@@ -21,7 +23,7 @@
             <div class = "infoContainer" id = "displayName">사용자 이름</div>
             <div class = "infoContainer" id = "displayDepartment">부서: 디자인</div>
             <div class = "infoContainer" id = "displayPosition">직책: 팀원</div>
-            <button id = "infoFixButton" onclick = "">정보 수정</button>
+            <button id = "infoFixButton" onclick = showFixInfoPopup(event)>정보 수정</button>
         </article>
         <button id = "resignButton">회원 탈퇴</button>
     </nav>
@@ -36,7 +38,7 @@
                 </div>
                 <div id = "monthContainer"> 10월</div>
             </div>
-            <div id = "monthList">1 2 3 4 5 6 7 8 9 10 11 12 13
+            <div id = "monthList">
                 <!-- js로 반복 문 만들어서 버튼 집어넣어주기 -->
             </div>
         </div>
@@ -44,6 +46,71 @@
             <!-- js로 반복문 만들어서 버튼 집어넣어주기 -->
         </div>
     </article>
+
+    <div class = "modal" id = "todoList">
+        <div id= "popupContainer">
+            <div id = "popupHeader"> 9일</div>
+
+            <div id = "todoListUp">
+                <div id = "listHeader">
+                    나의 일정
+                </div>
+                <div id = "listBody">
+                    <!-- 자스로 일정 데베 받아서 직접 import -->
+                    <!-- 예시 디자인 -->
+                    <div class = "todoListContent" id = "addTodoList">
+                        <div class = "index" id = "addIndex" onclick = "">+</div>
+                        <input class = "timeDisplay" id = "inputTime" placeholder = "00:00"></input>
+                        <input class = "todoDisplay" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
+                    </div>
+
+                    <div class = "todoListContent">
+                        <div class = "index">1</div>
+                        <div class = "timeDisplay" id = "time">10:00</div>
+                        <div class = "todoDisplay" id = "todo">거래처 미팅</div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class = "modal" id = "infoFix">
+        <div id = "bodyFrame">
+            <form id = "inputForm">
+                <input class = "inputContainer" id = "inputId" placeholder = "ID를 입력해주세요(2~10글자)">
+                <input class = "inputContainer" id = "inputPw" placeholder = "비밀번호를 입력해주세요(8~16글자)">
+                <input class = "inputContainer" id = "inputName" placeholder = "이름을 입력해주세요">
+                <div id = "deptAndPosition">
+                    <select class = "select" id = "departmentSelect">
+                        <option value = ""> 부서</option>
+                        <option value = "manageTeam"> 경영</option>
+                        <option value = "designTeam"> 디자인</option>
+                    </select>
+                    <select class = "select" id = "positionSelect">
+                        <option value ="">직책</option>
+                        <option value = "leader">팀장</option>
+                        <option value = "member">팀원</option>
+                    </select>
+                </div>
+                
+                <div id = "email">
+                    <input class = "inputContainer" id = "inputEmail">@
+                    <select class = "select" id = "domainSelect">
+                        <option value = "">선택하세요</option>
+                        <option value = "@google.com">google.com</option>
+                        <option value = "@naver.com">naver.com</option>
+                    </select>
+                </div>
+                <button type = "submit" id = "confrimButton">Confirm</button>
+    
+            </form>
+            
+        </div>
+        <button id = "returnButton" onclick = hideFixInfoPopup(event)>돌아가기</button>
+    </div>
     <nav id = "rightSideMenu"></nav>
 
     <script src = "/scheduler_project/js/scheduler.js"></script>

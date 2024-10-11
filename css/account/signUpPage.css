@@ -15,6 +15,22 @@
     --border-radius-input: 10px;
 
 }  
+/* 로그인 프레임 */
+#bodyFrame{
+    /* 속성 부여 */
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    /* 디자인 */
+    width: var(--frame-size-width);
+    height: var(--frame-size-height);
+    padding:20px;
+    background-color: white;
+    border-radius: 20px;
+}
 
 #bodyFrame{
     height: var(--signup-frame-size-height);

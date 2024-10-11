@@ -5,9 +5,16 @@
     --theme-color: #fef8d9;
     --placeholder-color: #8d8383;
     --background-color-sidemenu: #d9d9d9;
-
+    --daycontainer-stroke-color: #d9d9d9;
+    --todoList-color-index: rgba(255, 165, 21, 0.3);
+    --todoList-color-body: rgba(255, 165, 21, 0.14);
+    --todoList-color-text: rgba(255, 165, 21, 1);
+    --addtodoList-color-index: #d9d9d9;
+    --addtodoList-color-body: #f3f3f3;
+    
     /* 사이즈 */
     --scheduler-body-size-width: 1610px;
+    --todoList-size-container-height: 45px;
 }   
 
 /* 웹 전체 바디 스타일 지정 */
@@ -19,6 +26,7 @@ body{
     /*디자인*/
     width: 100%;
     height: 720px;
+    padding:0;
     background-color: white;
 }
 
@@ -39,7 +47,6 @@ nav{
     /* 속성부여 */
     display: flex;
     flex-direction: column;
-
 
     /* 디자인 */
     width: 100%;
@@ -71,33 +78,63 @@ nav{
     border:none;
 
     /* 임시 설정 */
-    border:1px solid black;
+    /* border:1px solid black; */
 }
 
 #yearContainer{
     /* 속성 */
     display: flex;
+    align-items: center;
     justify-content: space-around;
 
     /* 디자인 */
     width: 130px;
     height: 100%;
     border:none;
-    border:1px solid black;
+    font-size: 24px;
+    margin-right: 30px;
+    /* border:1px solid black; */
 }
 
 /* 연도 변경 버튼 공통 스타일 */
 .changeYearButton{
     width: 10px;
     height: 20px;
-    background-color: #8d8383;
+    border: none;
+    background-color: rgba(0,0,0,0);
+    background-image: url(/scheduler_project/asset/icon/cross_icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
+#lastYearButton{
+    transform: rotate(180deg);
+}
+
+#monthContainer{
+    /* 속성 */
+    display:flex;
+    align-items: center;
+
+    /* 디자인 */
+    border:none;
+    font-size: 36px;
+    margin-right: 180px;
+}
 /* 월 변경 버튼 공통 스타일 */
 #monthList{
     display: flex;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     height: 40px;
+    border:none;
+}
+
+#monthChangeButton{
+    width:20px;
+    height:20px;
+    margin-right: 10px;
 }
 
 /* 사이드메뉴 활성화(비활성화) 버튼 */
@@ -162,6 +199,7 @@ nav{
     margin-bottom: 80px;
 }
 
+/* 회원정보 표시 세부 설정 */
 .infoContainer{
     width: 120px;
     height: 25px;
@@ -202,18 +240,174 @@ nav{
     /* 속성 */
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
 
     /* 디자인 */
     width: 100%;
     height: 100%;
     background-color: #edebeb;
-    border: 1px solid black;
+    border:none;
+    /* border: 1px solid black; */
 }
 
 /* 날짜 칸 스타일 설정 */
-#dayContainer{
-    width: 200px;
-    height: 180px;
+.importDayContainer{
+    box-sizing: border-box;
+    /* width: 200px;
+    height: 120px; */
+    width: 14%;
+    height: 20%;
     border: 1px solid black;
     background-color: white;
+    border:0.2px solid var(--daycontainer-stroke-color);
+    padding:0;
+    text-indent: 10px;
+}
+
+/* 팝업창 스타일 설정 */
+.modal{
+    /* 속성 */
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* 디자인 */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* 일별 일정 표시 팝업창, 정보 수정 팝업창 표시 상태 초기 설정 */
+#todoList,#infoFix{
+    display: none;
+}
+
+/* 팝업창 스타일 설정 */
+#popupContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+/* 정보 수정 팝업창 스타일 설정 */
+#bodyFrame{
+    /* 속성 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    /* 디자인 */
+    transform: translate(-50%,-50%);
+}
+
+/* 정보 수정 팝업창 닫기 버튼 설정 */
+#returnButton{
+    /* 속성 */
+    position:absolute;
+    top:85%;
+    left: 50%;
+    transform: translate(-50%);
+
+    /* 디자인 */
+    width: 80%;
+    background-color: rgba(0,0,0,0);
+}
+
+/* 일정 표시 팝업 디자인 */
+
+/* 일정표시 팝업 헤더 */
+#popupHeader{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid black;
+    font-size: 20px;;
+}
+#listHeader{
+    display:flex;
+    align-items: center;
+    color: var(--todoList-color-text);
+    
+    width: 100%;
+    height: 50px;
+    text-indent: 10px;
+    border-bottom: 1px solid var(--daycontainer-stroke-color);
+}
+
+.todoListContent{
+    /* 속성 */
+    display: flex;
+    align-items: center;
+
+    /* 디자인 */
+    width: 100%;
+    height: var(--todoList-size-container-height);
+    margin-top: 5px;
+    border:none;
+    border-radius: 10px;
+    background-color: var(--todoList-color-body);
+}
+
+.index{
+    /* 속성 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 디자인 */
+    height: var(--todoList-size-container-height);
+    aspect-ratio: 1/1;
+    background-color: var(--todoList-color-index);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-weight:bold;
+    font-size: 20px;
+}
+
+.timeDisplay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 디자인 */
+    width: 25%;
+    height: var(--todoList-size-container-height);
+    font-size: 20px;
+    border-right: 1px solid var(--todoList-color-index);
+}
+
+.todoDisplay{
+    /* 속성 */
+    display: flex;
+    align-items: center;
+    
+    /* 디자인 */
+    font-size: 20px;
+    text-indent: 10px;
+}
+
+#addTodoList{
+    background-color: var(--addtodoList-color-body);
+}
+
+#addIndex{
+    background-color: var(--addtodoList-color-index);
+}
+
+#inputTime{
+    padding: 0;
+    width: 25%;
+    border:none;
+    border-right: 1px solid var(--addtodoList-color-index);
+}
+
+#inputTime::placeholder{
+    text-indent: 0;
+    text-align: center;
 }

@@ -1,3 +1,4 @@
+//사이드 메뉴 활성화 함수
 function showSideMenu(e){
     var hideMenu = document.getElementById("leftSideMenu");
     hideMenu.style.display = "none";
@@ -8,6 +9,7 @@ function showSideMenu(e){
     showMenu.style.display = "flex";
 }
 
+//사이드 메뉴 비활성화 함수
 function hideSideMenu(e){
     var hideMenu = document.getElementById("leftSideMenu");
     hideMenu.style.display = "flex";
@@ -18,13 +20,59 @@ function hideSideMenu(e){
     showMenu.style.display = "none";
 }
 
-// function 
+//일 표시칸 추가 함수
+function importDayContainer() {
+    var parent = document.getElementById("schedulerMainFrame");
+    var todoListPopup = document.getElementById("todoList");
+    var popupContainer = document.getElementById("popupContainer");
 
-// for (var i = 0; i< 31; i++){
-//     var parent = document.getElementById("schedulerMainFrame");
+    for (var i = 0; i < 31; i++) { // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
+        var importDayContainer = document.createElement("div");
+        importDayContainer.className = "importDayContainer";
+        importDayContainer.id = i;
+        importDayContainer.innerHTML = i + 1;
 
-//     var dayContainer = document.createElement("div");
-//     dayContainer.class = "dayContainer";
+        // 일 표시 칸 클릭시 리스트 팝업 표시
+        importDayContainer.onclick = function() {
+            todoListPopup.style.display = "flex";
+            // var popupHeader = document.getElementById("popupHeader");
+            // popupHeader.innerHTML = importDayContainer.innerHTML;
+        }
 
-//     parent.appendchild("dayContainer");
-// }
+        parent.appendChild(importDayContainer);
+    }
+
+    // 외부 영역 클릭시 팝업창 닫음
+    window.addEventListener('mouseup', function(e) {
+        if (!popupContainer.contains(e.target) && todoListPopup.style.display === "flex") {
+            todoListPopup.style.display = "none";
+        }
+    });
+}
+
+// 월 변경 버튼 리스트 
+function importMonthChangeButton(){
+    var parent = document.getElementById("monthList");
+
+    for (var i = 0; i < 12; i++){ // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
+        var monthChangeButton = document.createElement("div");
+        monthChangeButton.id = "monthChangeButton";
+        monthChangeButton.innerHTML = i + 1;
+        parent.appendChild(monthChangeButton);
+
+    }
+}
+
+
+importDayContainer();
+importMonthChangeButton();
+
+function showFixInfoPopup(event){
+    var popup = document.getElementById("infoFix");
+    popup.style.display = "flex";    
+}
+
+function hideFixInfoPopup(evnet){
+    var popup = document.getElementById("infoFix");
+    popup.style.display = "none";  
+}
