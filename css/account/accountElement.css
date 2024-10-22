@@ -1,3 +1,19 @@
+:root{
+    --background-color: #edebeb;
+    --input-container-color: #f3f3f3;
+    --theme-color: #fef8d9;
+    --placeholder-color: #8d8383;
+    --error-border-color: #ff5656;
+    --error-background-color: #ffd0d0;
+
+
+    /* 사이즈 */
+    --frame-size-width: 440px;
+    --frame-size-height: 340px;
+    --container-size-width: 350px;
+    --container-size-height: 50px;
+    --border-radius-input: 10px;
+}   
 
 /* 입력값 프레임 */
 .inputContainer{
@@ -43,6 +59,19 @@ input::placeholder{
     color: var(--placeholder-color);
     font-size: 20px;
 }
+
+input.valid{
+    background-color: initial;
+}
+
+input:focus{
+    background-color: initial;
+}
+
+input:invalid:focus{
+    background-color:var(--error-background-color);
+}
+
 
 
 /* 버튼 디자인(로그인, 회원가입) */
