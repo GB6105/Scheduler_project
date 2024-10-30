@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/account/accountCommon.css">
-    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/account/accountElement.css">
-    <link rel = "stylesheet" type = "text/css" href = "/scheduler_project/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/scheduler_project/css/account/accountCommon.css">
+    <link rel="stylesheet" type="text/css" href="/scheduler_project/css/account/accountElement.css">
+    <link rel="stylesheet" type="text/css" href="/scheduler_project/css/index.css">
     <title>scheduler_project</title>
 </head>
 <body>
-    <h1 id = "title">Scheduler for Team</h1>
-    <div id = "bodyFrame">
-        <form id = "loginForm" action = "/scheduler_project/jsp/action/loginAction.jsp" method = "post" >
-            <div class = "inputContainer" id = "inputIDcontainer">
-                <div class = "icon"></div>
-                <input id = "inputID" placeholder="ID" minlength="2" maxlength="16" pattern = "[a-zA-Z0-9]*" required>
+    <h1 id="title">Scheduler for Team</h1>
+    <div id="bodyFrame">
+        <form id="loginForm"  action="/scheduler_project/jsp/action/account/loginAction.jsp" method="post">
+            <div class="inputContainer" id="inputIDcontainer">
+                <div class="icon"></div>
+                <input id="inputID" name="valueID" placeholder="ID" minlength="2" maxlength="16" pattern="[a-zA-Z0-9]*" required>
             </div>
-            <div class = "inputContainer" id = "inputPWcontainer">
-                <div class = "icon"></div>
-                <input id = "inputPW" placeholder="PW" minlength="8" maxlength="16" pattenr ="[a-zA-Z0-9~!@#$%^&*]*" required>
+            <div class="inputContainer" id="inputPWcontainer">
+                <div class="icon"></div>
+                <input type="password" id="inputPW" name="valuePW" placeholder="PW" minlength="8" maxlength="16" pattern="[a-zA-Z0-9~!@#$%^&*]*" required>
             </div>
-            <button type = "submit" id = "loginButton" > login</button>
+            <button type="button" id="loginButton" onclick = "checkForm(event)">login</button>
         </form>
-        <div id = "seperateLine"></div>
-        <div id = "optionContainer">
-            <button id = "signUpButton" onclick = "location.href = '/scheduler_project/html/account/signUpPage.html'">sign up</button>
-            <div id = "findingOption">
-                <button class = "findingButton" onclick = "location.href = '/scheduler_project/html/account/IDfindingPage.html'">ID 찾기</button>
-                <button class = "findingButton" onclick = "location.href = '/scheduler_project/html/account/PWfindingPage.html'">PW 찾기</button>
+        <div id="seperateLine"></div>
+        <div id="optionContainer">
+            <button id="signUpButton" onclick="location.href='/scheduler_project/html/account/signUpPage.html'">sign up</button>
+            <div id="findingOption">
+                <button class="findingButton" onclick="location.href='/scheduler_project/html/account/IDfindingPage.html'">ID 찾기</button>
+                <button class="findingButton" onclick="location.href='/scheduler_project/html/account/PWfindingPage.html'">PW 찾기</button>
             </div>
         </div>
     </div>
-    
-    <script src = "/scheduler_project/js/index.js"></script>
+
+    <script src="/scheduler_project/js/index.js"></script>
+
 </body>
 </html>

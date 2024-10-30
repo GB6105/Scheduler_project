@@ -11,10 +11,10 @@
 <body>
     <h1 id = "title">Find ID</h1>
     <div id = "bodyFrame">
-        <form id = "infoInputForm">
+        <form id = "infoInputForm" action = "/scheduler_project/jsp/action/findIdAction.jsp" method="post">
             <div id = "email">                
-                <input class = "inputContainer" id = "inputEmail" placeholder="email">@
-                <select class = "select" id = "domainSelect">
+                <input class = "inputContainer" id = "inputEmail" placeholder="email" pattern = "[a-zA-Z0-9]*" required>@
+                <select class = "select" id = "domainSelect" required>
                     <option value = "">선택하세요</option>
                     <option value = "@google.com">google.com</option>
                     <option value = "@naver.com">naver.com</option>
