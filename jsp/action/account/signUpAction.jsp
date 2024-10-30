@@ -18,8 +18,8 @@
     String errorMessage = "";//에러메시지를 위한 저장
     
     //DB 찾아오기
-    Class.forName("org.mariadb.jdbc.Driver"); //이게 오류나면 db가 설치가 안됫거나, 꺼져있거나 커넥터파일이 잘못됫거나
     try{
+        Class.forName("org.mariadb.jdbc.Driver"); //이게 오류나면 db가 설치가 안됫거나, 꺼져있거나 커넥터파일이 잘못됫거나
         Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105"); //db에 연결하는 부분
 
         String sql ="INSERT INTO user (id, pw, name, dept_idx, position_idx, email) VALUES (?,?,?,?,?,?)"; // 
