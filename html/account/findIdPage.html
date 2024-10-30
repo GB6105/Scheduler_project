@@ -11,7 +11,7 @@
 <body>
     <h1 id = "title">Find ID</h1>
     <div id = "bodyFrame">
-        <form id = "infoInputForm" action = "/scheduler_project/jsp/action/findIdAction.jsp" method="post">
+        <form id = "infoInputForm" action = "/scheduler_project/jsp/action/account/findIdAction.jsp" method="post">
             <div id = "email">                
                 <input class = "inputContainer" name = "email" id = "inputEmail" placeholder="email" pattern = "[a-zA-Z0-9]*" required>@
                 <select class = "select" name = "domain" id = "domainSelect" required>
@@ -20,11 +20,12 @@
                     <option value = "@naver.com">naver.com</option>
                 </select>
             </div>
-            <button type = "submit" id = "confrimButton">Confirm</button>
+            <button type = "button" id = "confrimButton" onclick = "checkForm(event)">Confirm</button>
 
         </form>
         <button type = "button" id = "gobackButton" onclick = "location.href = '/scheduler_project/index.html'">돌아가기</button>
 
     </div>
+    <script src = "/scheduler_project/js/account/findId.js"></script>
 </body>
 </html>

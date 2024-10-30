@@ -6,11 +6,12 @@
 
 <%
     request.setCharacterEncoding("utf-8");
+    String idValue = request.getParameter("id");
     String emailValue = request.getParameter("email");
     String domainValue = request.getParameter("domain");
     String emailAddressValue = emailValue + domainValue;
     String errorMessage = "";//에러메시지를 위한 저장
-    String find_id = "";
+    String find_pw = "";
 
     try{
         Class.forName("org.mariadb.jdbc.Driver");
@@ -25,7 +26,7 @@
         ResultSet result= query.executeQuery();
         
         if(result.next()){
-            find_id = result.getString("id");
+            find_pw = result.getString("pw");
         }
         
     }catch(Exception e){
@@ -34,9 +35,9 @@
 %>
 
 <script>
-    if("<%=find_id%>"){
-        console.log("<%=find_id%>")
-        alert("회원님의 id는 " + "<%=find_id%>" + "입니다.")
+    if("<%=find_pw%>"){
+        console.log("<%=find_pw%>")
+        alert("회원님의 pw는 " + "<%=find_pw%>" + "입니다.")
         location.href = "/scheduler_project/index.html"
     }else{
         alert("입력하신 정보에 해당하는 id를 찾을 수 없습니다.\n 회원가입을 진행해주세요")
