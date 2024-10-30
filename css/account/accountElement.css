@@ -12,6 +12,9 @@
     --frame-size-height: 340px;
     --container-size-width: 350px;
     --container-size-height: 50px;
+
+    --gobackButton-size-width: 60px;
+    --gobackButton-size-height:40px;
     --border-radius-input: 10px;
 }   
 
@@ -62,7 +65,7 @@ input::placeholder{
 
 /* 입력칸 에러 스타일 지정 */
 .inputError{
-    border: 2px solid var(--error-border-color)ㄴ;
+    border: 2px solid var(--error-border-color);
     background-color: var(--error-background-color);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -84,4 +87,13 @@ button{
     border:none;
     background-color: var(--theme-color);
     font-size: 24px;
+}
+
+#gobackButton{
+    
+    width: var(--gobackButton-size-width);
+    height: var(--gobackButton-size-height);
+    background-color: rgba(0,0,0,0);
+    border:none;
+    font-size: 10px;
 }

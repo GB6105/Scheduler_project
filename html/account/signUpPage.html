@@ -12,33 +12,33 @@
     <h1 id = "title">Sign Up Page</h1>
     <div id = "bodyFrame">
         <form id = "inputForm" action = "/scheduler_project/jsp/action/account/signUpAction.jsp" method = "post">
-            <input class = "inputContainer" id = "inputId" placeholder = "ID를 입력해주세요(2~10글자)" minlength="2" maxlength="16" pattern = "[a-zA-Z0-9]*" required>
-            <input class = "inputContainer" id = "inputPw" placeholder = "비밀번호를 입력해주세요(8~16글자)" minlength ="8" maxlength = "16" pattern="[a-zA-Z0-9~!@#$%^&*]*" required>
-            <input class = "inputContainer" id = "inputName" placeholder = "이름을 입력해주세요" minlength="3" maxlength="4" pattern = "[ㄱ-ㅎ가-힣a-zA-Z]*" required>
+            <input class = "inputContainer" name = "id" id = "inputId" placeholder = "ID를 입력해주세요(2~10글자)" minlength="2" maxlength="16" pattern = "[a-zA-Z0-9]*" required>
+            <input class = "inputContainer" name = "pw" id = "inputPw" placeholder = "비밀번호를 입력해주세요(8~16글자)" minlength ="8" maxlength = "16" pattern="[a-zA-Z0-9~!@#$%^&*]*" required>
+            <input class = "inputContainer" name = "name" id = "inputName" placeholder = "이름을 입력해주세요" minlength="3" maxlength="5" pattern = "[ㄱ-ㅎ가-힣a-zA-Z0-9]*" required>
             <div id = "deptAndPosition">
-                <select class = "select" id = "departmentSelect" required>
+                <select class = "select" name = "department" id = "departmentSelect" required>
                     <option value = ""> 부서</option>
-                    <option value = "manageTeam"> 경영</option>
-                    <option value = "designTeam"> 디자인</option>
+                    <option value = "1"> 디자인</option>
+                    <option value = "2"> 경영</option>
                 </select>
-                <select class = "select" id = "positionSelect" required>
+                <select class = "select" name = "position" id = "positionSelect" required>
                     <option value ="">직책</option>
-                    <option value = "leader">팀장</option>
-                    <option value = "member">팀원</option>
+                    <option value = "1">팀원</option>
+                    <option value = "2">팀장</option>
                 </select>
             </div>
             
             <div id = "email">
-                <input class = "inputContainer" id = "inputEmail" pattern = "[a-zA-Z0-9]*" required>@
-                <select class = "select" id = "domainSelect" required>
+                <input class = "inputContainer" name = "eamil" id = "inputEmail" pattern = "[a-zA-Z0-9]*" required>@
+                <select class = "select" name = "domain" id = "domainSelect" required>
                     <option value = "">선택하세요</option>
                     <option value = "@google.com">google.com</option>
                     <option value = "@naver.com">naver.com</option>
                 </select>
             </div>
-            <button id = "confrimButton">Confirm</button>
-
+            <button type ="button" id = "confrimButton" onclick = "checkForm(event)">Confirm</button>
         </form>
+        <button type = "button" id = "gobackButton" onclick = "location.href = '/scheduler_project/index.html'">돌아가기</button>
 
     </div>
     <script src = "/scheduler_project/js/signUp.js"></script>

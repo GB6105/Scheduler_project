@@ -13,11 +13,11 @@
     <div id="bodyFrame">
         <form id="loginForm"  action="/scheduler_project/jsp/action/account/loginAction.jsp" method="post">
             <div class="inputContainer" id="inputIDcontainer">
-                <div class="icon"></div>
+                <div class="icon" id = "idIcon"></div>
                 <input id="inputID" name="valueID" placeholder="ID" minlength="2" maxlength="16" pattern="[a-zA-Z0-9]*" required>
             </div>
             <div class="inputContainer" id="inputPWcontainer">
-                <div class="icon"></div>
+                <div class="icon" id = "pwIcon"></div>
                 <input type="password" id="inputPW" name="valuePW" placeholder="PW" minlength="8" maxlength="16" pattern="[a-zA-Z0-9~!@#$%^&*]*" required>
             </div>
             <button type="button" id="loginButton" onclick = "checkForm(event)">login</button>
