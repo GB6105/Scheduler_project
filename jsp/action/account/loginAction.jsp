@@ -4,6 +4,7 @@
 <%@ page import = "java.sql.Connection"%>
 <%@ page import = "java.sql.PreparedStatement"%>
 <%@ page import = "java.sql.ResultSet"%>
+<%@ page import = "java.time.LocalDate" %>
 <%@ page session = "true"%>
 
 <%-- 백엔드 통신 부분 --%>
@@ -31,19 +32,48 @@
         result_dept = result.getString("dept_idx");
     }
 
-    if(result_PW.equals(result)){// 맞을 경우 세션에 다음 정보를 저장
+    if(result_PW.equals(input_pw)){// 맞을 경우 세션에 다음 정보를 저장
         session.setAttribute("user_id",input_id); // 접속자 id
         session.setAttribute("user_position",result_position); // 접속자 직책 -> 팀장 접속시 기능 이용 가능
         session.setAttribute("user_dept",result_dept);  // 접속자 부서 -> 팀장 접속시 기능 이용 가능
     }
-    // String from_session_id  = (String).session.getAttribute("user_id")
+    String from_session_id  = (String)session.getAttribute("user_id");
+
+
+    //접속 당시 시간 (날짜 및 연도 저장)
+    // LocalDate now = LocalDate.now(); // 접속당시 시간 저장
+
+    // int year = now.getYear();
+    // int month = now.getMonthValue();
+
+    // session.setAttribute("year",year);
+    // session.setAttribute("month",month);
+
+    // int currYear = (int)session.getAttribute("year");
+    // int currMonth = (int)session.getAttribute("month");
+
 %>
 
 <script>
-    
+    //컴퓨터 시간 받아오기
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+
+    console.log("<%=from_session_id%>");
+    console.log("<%=input_id%>");
+    console.log("<%=input_pw%>");
+    console.log("<%=result_position%>");
+    console.log("<%=result_dept%>");
+
+
+    console.log(year);
+    console.log(month+1);
+
+
     if("<%=result_PW%>" === "<%=input_pw%>"){
         alert("로그인에 성공하였습니다!")
-        location.href = "/scheduler_project/jsp/page/schedulerMain.jsp"
+        location.href = "/scheduler_project/jsp/page/schedulerMain.jsp?year="+year+"&month="+month;
     }else if("<%=result_PW%>" == ""){
         alert("존재하지 않는 계정입니다")
         location.href = "/scheduler_project/index.html"

@@ -9,9 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 id = "title">Find ID</h1>
-    <div id = "bodyFrame" action = "/scheduler_project/jsp/action/account/findPwAction.jsp" method="post">
-        <form id = "infoInputForm">
+    <h1 id = "title">Find PW</h1>
+    <div id = "bodyFrame" >
+        <form id = "infoInputForm" action = "/scheduler_project/jsp/action/account/findPwAction.jsp" method="post">
             <input class = "inputContainer" name = "id" id = "inputId" placeholder = "ID를 입력해주세요">
             <div id = "email">
                 <input class = "inputContainer" name ="email" id = "inputEmail" placeholder="email">@
@@ -21,7 +21,7 @@
                     <option value = "@naver.com">naver.com</option>
                 </select>
             </div>
-            <button type = "button" id = "confrimButton">Confirm</button>
+            <button type = "button" id = "confrimButton" onclick = "checkForm(event)">Confirm</button>
 
         </form>
         <button type = "button" id = "gobackButton" onclick = "location.href = '/scheduler_project/index.html'">돌아가기</button>

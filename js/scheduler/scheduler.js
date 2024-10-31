@@ -51,21 +51,21 @@ function importDayContainer() {
 }
 
 // 월 변경 버튼 리스트 
-function importMonthChangeButton(){
-    var parent = document.getElementById("monthList");
+// function importMonthChangeButton(){
+//     var parent = document.getElementById("monthList");
 
-    for (var i = 0; i < 12; i++){ // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
-        var monthChangeButton = document.createElement("div");
-        monthChangeButton.id = "monthChangeButton";
-        monthChangeButton.innerHTML = i + 1;
-        parent.appendChild(monthChangeButton);
+//     for (var i = 0; i < 12; i++){ // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
+//         var monthChangeButton = document.createElement("div");
+//         monthChangeButton.id = "monthChangeButton";
+//         monthChangeButton.innerHTML = i + 1;
+//         parent.appendChild(monthChangeButton);
 
-    }
-}
+//     }
+// }
 
 
 importDayContainer();
-importMonthChangeButton();
+// importMonthChangeButton();
 
 function showFixInfoPopup(event){
     var popup = document.getElementById("infoFix");
@@ -76,3 +76,4 @@ function hideFixInfoPopup(evnet){
     var popup = document.getElementById("infoFix");
     popup.style.display = "none";  
 }
+

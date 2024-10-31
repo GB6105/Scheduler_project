@@ -18,10 +18,9 @@
 
         Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105"); //db에 연결하는 부분
 
-        String sql = "SELECT id FROM user WHERE email = ?";
+        String sql = "SELECT pw FROM user WHERE email = ?";
         PreparedStatement query = connect.prepareStatement(sql);
         query.setString(1,emailAddressValue);
-
 
         ResultSet result= query.executeQuery();
         
