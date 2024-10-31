@@ -140,6 +140,29 @@
         </div>
         <div id = "schedulerMainFrame">
             <!-- js로 반복문 만들어서 버튼 집어넣어주기 -->
+            <%
+                var j = 1;
+                var dayCount = 30;
+
+                if("2".equals(currMonth)){
+                    dayCount = 29; // 28일
+                }else if("4".equals(currMonth)||"6".equals(currMonth)||"9".equals(currMonth)||"11".equals(currMonth)){
+                    dayCount = 31;  // 30일
+                }else{
+                    dayCount = 32; // 31일
+                }
+
+                for(j = 1; j < dayCount; j++){
+            %>   
+                <%-- <div class = "importDayContainer" onclick = "listPopup(event)"> <%=j%> </div> --%>
+                <%-- <div class = "importDayContainer" onclick = window.open(scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>)> <%=j%> </div> --%>
+                <%-- <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>`, '_blank', 'width=600,height=400');"> --%>
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>`, '_blank', 'width=1920,height=1080');">
+                <%-- <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>`, '_blank', 'popup');"> --%>
+                    <%=j%>
+                </div>
+
+            <% } %>
 
 
 
@@ -147,23 +170,24 @@
     </article>
 
     <%-- 실제로 일정 출력되는 곳 --%>
-    <div class = "modal" id = "todoList">
+    <%-- <div class = "modal" id = "todoList">
         <div id= "popupContainer">
-            <div id = "popupHeader"> 9일</div>
+            <div id = "popupHeader"><%=j%>일</div>
 
             <div id = "todoListUp">
                 <div id = "listHeader">
                     나의 일정
                 </div>
                 <div id = "listBody">
-                    <!-- 자스로 일정 데베 받아서 직접 import -->
-                    <!-- 예시 디자인 -->
+                    자스로 일정 데베 받아서 직접 import
+                    일정 추가 버튼
                     <div class = "todoListContent" id = "addTodoList">
-                        <div class = "index" id = "addIndex" onclick = "">+</div>
+                        <div class = "index" id = "addIndex" onclick = "f()">+</div>
                         <input class = "timeDisplay" id = "inputTime" placeholder = "00:00"></input>
                         <input class = "todoDisplay" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
                     </div>
-
+                    
+                    일정출력
                     <div class = "todoListContent">
                         <div class = "index">1</div>
                         <div class = "timeDisplay" id = "time">10:00</div>
@@ -175,7 +199,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --%>
     
     <%-- 개인 정보 수정 모달 --%>
     <div class = "modal" id = "infoFix">
@@ -221,6 +245,7 @@
         console.log("<%=userPosition%>")
         console.log("<%=currYear%>")
         console.log("<%=currMonth%>")
+        <%-- console.log("<%=M%>") --%>
 
         function prevYear(event){
             var yearMinus = <%=currYear%> - 1;

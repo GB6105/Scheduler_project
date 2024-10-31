@@ -55,7 +55,7 @@ nav{
     height: 100%;
     /* 20241018 */
 }
-
+/* ---------------------------------------------------------------------------- */
 /* 연도,월 표시  */
 #header{
     /* 속성 */
@@ -139,6 +139,7 @@ nav{
     margin-right: 10px;
 }
 
+/* ---------------------------------------------------------------------------- */
 /* 사이드메뉴 활성화(비활성화) 버튼 */
 .sideMenuButton{
     /* 속성 */
@@ -236,6 +237,7 @@ nav{
     margin-bottom: 20px;;
 }
 
+/* ---------------------------------------------------------------------------- */
 /* 스케쥴러 스타일 설정 */
 
 #schedulerMainFrame{
@@ -246,7 +248,8 @@ nav{
 
     /* 디자인 */
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    height:fit-content;
     background-color: #edebeb;
     border:none;
     padding:0;
@@ -259,10 +262,10 @@ nav{
 /* 날짜 칸 스타일 설정 */
 .importDayContainer{
     box-sizing: border-box;
-    /* width: 200px;
-    height: 120px; */
+    /* width: 200px;*/
+    height: 120px;
     width: 14.2%;
-    height: 20%;
+    /* height: 20%; */
     background-color: white;
     border:0.2px solid var(--daycontainer-stroke-color);
     padding:0;
@@ -284,7 +287,8 @@ nav{
 }
 
 /* 일별 일정 표시 팝업창, 정보 수정 팝업창 표시 상태 초기 설정 */
-#todoList,#infoFix{
+#todoList{}
+#infoFix{
     display: none;
 }
 
@@ -325,8 +329,8 @@ nav{
     background-color: rgba(0,0,0,0);
 }
 
+/* ---------------------------------------------------------------------------- */
 /* 일정 표시 팝업 디자인 */
-
 /* 일정표시 팝업 헤더 */
 #popupHeader{
     width: 100%;
@@ -374,6 +378,7 @@ nav{
     font-weight:bold;
     font-size: 20px;
 }
+
 
 .timeDisplay{
     display: flex;

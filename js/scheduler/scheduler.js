@@ -21,51 +21,38 @@ function hideSideMenu(e){
 }
 
 //일 표시칸 추가 함수
-function importDayContainer() {
-    var parent = document.getElementById("schedulerMainFrame");
-    var todoListPopup = document.getElementById("todoList");
-    var popupContainer = document.getElementById("popupContainer");
+// function importDayContainer() {
+//     var parent = document.getElementById("schedulerMainFrame");
+//     var todoListPopup = document.getElementById("todoList");
+//     var popupContainer = document.getElementById("popupContainer");
 
-    for (var i = 0; i < 31; i++) { // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
-        var importDayContainer = document.createElement("div");
-        importDayContainer.className = "importDayContainer";
-        importDayContainer.id = i;
-        importDayContainer.innerHTML = i + 1;
+//     for (var i = 0; i < 31; i++) { // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
+//         var importDayContainer = document.createElement("div");
+//         importDayContainer.className = "importDayContainer";
+//         importDayContainer.id = i;
+//         importDayContainer.innerHTML = i + 1;
 
-        // 일 표시 칸 클릭시 리스트 팝업 표시
-        importDayContainer.onclick = function() {
-            todoListPopup.style.display = "flex";
-            // var popupHeader = document.getElementById("popupHeader");
-            // popupHeader.innerHTML = importDayContainer.innerHTML;
-        }
+//         // 일 표시 칸 클릭시 리스트 팝업 표시
+//         importDayContainer.onclick = function() {
+//             todoListPopup.style.display = "flex";
+//             // var popupHeader = document.getElementById("popupHeader");
+//             // popupHeader.innerHTML = importDayContainer.innerHTML;
+//         }
 
-        parent.appendChild(importDayContainer);
-    }
-
-    // 외부 영역 클릭시 팝업창 닫음
-    window.addEventListener('mouseup', function(e) {
-        if (!popupContainer.contains(e.target) && todoListPopup.style.display === "flex") {
-            todoListPopup.style.display = "none";
-        }
-    });
-}
-
-// 월 변경 버튼 리스트 
-// function importMonthChangeButton(){
-//     var parent = document.getElementById("monthList");
-
-//     for (var i = 0; i < 12; i++){ // 추후 변수로 지정하여서 월별 칸 생성 개수 조절
-//         var monthChangeButton = document.createElement("div");
-//         monthChangeButton.id = "monthChangeButton";
-//         monthChangeButton.innerHTML = i + 1;
-//         parent.appendChild(monthChangeButton);
-
+//         parent.appendChild(importDayContainer);
 //     }
+
+//     // 외부 영역 클릭시 팝업창 닫음
+    // window.addEventListener('mouseup', function(e) {
+    //     if (!popupContainer.contains(e.target) && todoListPopup.style.display === "flex") {
+    //         todoListPopup.style.display = "none";
+    //     }
+    // });
 // }
 
 
-importDayContainer();
-// importMonthChangeButton();
+
+//importDayContainer();
 
 function showFixInfoPopup(event){
     var popup = document.getElementById("infoFix");
@@ -77,3 +64,17 @@ function hideFixInfoPopup(evnet){
     popup.style.display = "none";  
 }
 
+function f(){
+   alert("버튼을 눌렀습니다.")
+}
+
+function listPopup(event){
+    var todoListPopup = document.getElementById("todoList");
+    todoListPopup.style.display = "flex";
+
+    window.addEventListener('mouseup', function(e) {
+        if (!popupContainer.contains(e.target) && todoListPopup.style.display === "flex") {
+            todoListPopup.style.display = "none";
+        }
+    });
+}
