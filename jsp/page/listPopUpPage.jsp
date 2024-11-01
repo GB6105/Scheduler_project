@@ -8,7 +8,32 @@
 
 <%
     request.setCharacterEncoding("utf-8");
-    var day = request.getParameter("day");
+    String loginId = (String)session.getAttribute("user_id");
+
+    String day = request.getParameter("day");
+    String year = request.getParameter("year");
+    String month = request.getParameter("month");
+    String yearMonth = year+"-"+month+"-"+day;
+
+    String time = "";
+    String content = "";
+
+    Class.forName("org.mariadb.jdbc.Driver");
+    Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105");
+
+    //해당 날짜 일정 가져오기
+    String sql = "SELECT DATE_FORMAT(time,'%H:%i') AS time,content FROM todolist WHERE user_id = ? AND DATE(time) = ? ORDER BY time ASC";
+    PreparedStatement query = connect.prepareStatement(sql);
+    query.setString(1,loginId);
+    query.setString(2,yearMonth);
+    
+    ResultSet todoListResult = query.executeQuery();
+    // if(todoListResult.next()){
+    //     time = todoListResult.getString("time");
+    //     content = todoListResult.getString("content");
+
+    // }
+
 
 %>
 <!DOCTYPE html>
@@ -32,24 +57,42 @@
                     나의 일정
                 </div>
                 <div id = "listBody">
-                    <%-- 자스로 일정 데베 받아서 직접 import --%>
+
                     <%-- 일정 추가 버튼 --%>
                     <div class = "todoListContent" id = "addTodoList">
                         <div class = "index" id = "addIndex" onclick = "f()">+</div>
                         <input class = "timeDisplay" id = "inputTime" placeholder = "00:00"></input>
                         <input class = "todoDisplay" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
                     </div>
+                    <%  
+                        var idx = 1;
+                        while(todoListResult.next()){
+                            String timeValue = todoListResult.getString("time");
+                            String contentValue = todoListResult.getString("content");
+                    %>
+                        <div class = "todoListContent">
+                            <div class = "index"><%=idx%></div>
+                            <div class = "timeDisplay" id = "time"><%=timeValue%></div>
+                            <div class = "todoDisplay" id = "todo"><%=contentValue%></div>
+                        </div>
+                        
+                    <% 
+                        idx += 1;
+                        } 
+                    %>
                     
-                    <%-- 일정출력 --%>
-                    <div class = "todoListContent">
-                        <div class = "index">1</div>
-                        <div class = "timeDisplay" id = "time">10:00</div>
-                        <div class = "todoDisplay" id = "todo">거래처 미팅</div>
-                    </div>
-
-
                 </div>
 
             </div>
         </div>
+
+    <script src = "/scheduler_project/js/scheduler/scheduler.js"></script>
+    <script>
+        console.log("<%=loginId%>")
+        console.log("<%=yearMonth%>")
+        console.log("<%=time%>")
+        console.log("<%=content%>")
+        
+    </script>
 </body>
+</html>

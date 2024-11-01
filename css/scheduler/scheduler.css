@@ -287,7 +287,7 @@ nav{
 }
 
 /* 일별 일정 표시 팝업창, 정보 수정 팝업창 표시 상태 초기 설정 */
-#todoList{}
+/* #todoList{} */
 #infoFix{
     display: none;
 }
@@ -348,7 +348,11 @@ nav{
     text-indent: 10px;
     border-bottom: 1px solid var(--daycontainer-stroke-color);
 }
-
+#listBody{
+    overflow:scroll;
+    overflow-x: hidden;
+    height:300px;
+}
 .todoListContent{
     /* 속성 */
     display: flex;

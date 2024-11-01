@@ -25,60 +25,44 @@
     // 로그인 시 받아오는 날짜 데이터(변경가능 변수)
     String currYear = request.getParameter("year");
     String currMonth = request.getParameter("month");
+    String yearMonth = currYear + "-" + currMonth;
+    Class.forName("org.mariadb.jdbc.Driver");
+    Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105");
+
+    //개인정보 받아오기
+    String sql = "SELECT id,name,email,p.posit_name,d.dept_name FROM user AS u JOIN posit AS p ON u.position_idx = p.idx JOIN department AS d ON u.dept_idx = d.idx WHERE id = ?";
+    PreparedStatement query = connect.prepareStatement(sql);
+    query.setString(1,loginId);
     
-    // try{
+    ResultSet infoResult = query.executeQuery();
 
-        Class.forName("org.mariadb.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105");
-
-        //개인정보 받아오기
-        String sql = "SELECT id,name,email,p.posit_name,d.dept_name FROM user AS u JOIN posit AS p ON u.position_idx = p.idx JOIN department AS d ON u.dept_idx = d.idx WHERE id = ?";
-        PreparedStatement query = connect.prepareStatement(sql);
+    if(infoResult.next()){
+        userId = infoResult.getString("id");
+        userName = infoResult.getString("name");
+        userEmail = infoResult.getString("email");
+        userPosition = infoResult.getString("p.posit_name");
+        userDept = infoResult.getString("d.dept_name");
+    }
+    
+    //팀장 팀원 구분하기
+    if(loginPositionIdx == "1"){//팀원일 때
+        // 본인 일정 데이터 받아오기
+            //TODO
+        String sql2 = "SELECT idx FROM todolist WHERE user_id = ? AND DATE_FORMAT(time,'%y-%M') = ? ORDER BY time ASC";
+        PreparedStatement query2 = connect.prepareStatement(sql2);
         query.setString(1,loginId);
-        
-        ResultSet infoResult = query.executeQuery();
-
-        if(infoResult.next()){
-            userId = infoResult.getString("id");
-            userName = infoResult.getString("name");
-            userEmail = infoResult.getString("email");
-            userPosition = infoResult.getString("p.posit_name");
-            userDept = infoResult.getString("d.dept_name");
-        }
-        
-        //팀장 팀원 구분하기
-        if(loginPositionIdx == "1"){//팀원일 때
-            // 본인 일정 데이터 받아오기
-                //TODO
-            String sql2 = "SELECT * FROM todolist WHERE user_id = ? AND time <= ? AND time >= ?";
-            PreparedStatement query2 = connect.prepareStatement(sql2);
-            query.setString(1,loginId);
-
-            ResultSet todoResult = query.executeQuery();
+        query.setString(2,yearMonth);
 
 
-        }
-        if(loginPositionIdx == "2"){//팀장일 때
-            // 팀원 일정 데이터 전부 받아오기
-                //TODO
-        }
-    
+        ResultSet todoResult = query.executeQuery();
 
 
-        // String sql2 = "SELECT title,idx FROM post WHERE user_id = ? ORDER BY create_at desc LIMIT 3";
-        // PreparedStatement query2 = connect.prepareStatement(sql2);
-        // query2.setString(1,loginId);
+    }
+    if(loginPositionIdx == "2"){//팀장일 때
+        // 팀원 일정 데이터 전부 받아오기
+            //TODO
+    }
 
-        // ResultSet postListResult = query2.executeQuery();
-
-        // String sql3 = "SELECT content,post_idx FROM comment WHERE user_idx = ? ORDER BY create_at desc LIMIT 3";
-        // PreparedStatement query3 = connect.prepareStatement(sql3);
-        // query3.setString(1,loginId);
-
-        // ResultSet commentListResult = query3.executeQuery();
-    // }catch(SQLException e){
-    //     errorMessage = "오류발생" + e.getMessage();
-    // }
 %>
 
 
@@ -153,13 +137,12 @@
                 }
 
                 for(j = 1; j < dayCount; j++){
+                    // while(todoListResult.nest())
             %>   
-                <%-- <div class = "importDayContainer" onclick = "listPopup(event)"> <%=j%> </div> --%>
-                <%-- <div class = "importDayContainer" onclick = window.open(scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>)> <%=j%> </div> --%>
-                <%-- <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>`, '_blank', 'width=600,height=400');"> --%>
-                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>`, '_blank', 'width=1920,height=1080');">
-                <%-- <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>`, '_blank', 'popup');"> --%>
+                <div class="importDayContainer" 
+                    onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>&year=<%=currYear%>&month=<%=currMonth%>`, '_blank', 'width=500,height=500,top=200,left=200');">
                     <%=j%>
+                    <div id = "totalTodo"></div>
                 </div>
 
             <% } %>
@@ -168,39 +151,7 @@
 
         </div>
     </article>
-
-    <%-- 실제로 일정 출력되는 곳 --%>
-    <%-- <div class = "modal" id = "todoList">
-        <div id= "popupContainer">
-            <div id = "popupHeader"><%=j%>일</div>
-
-            <div id = "todoListUp">
-                <div id = "listHeader">
-                    나의 일정
-                </div>
-                <div id = "listBody">
-                    자스로 일정 데베 받아서 직접 import
-                    일정 추가 버튼
-                    <div class = "todoListContent" id = "addTodoList">
-                        <div class = "index" id = "addIndex" onclick = "f()">+</div>
-                        <input class = "timeDisplay" id = "inputTime" placeholder = "00:00"></input>
-                        <input class = "todoDisplay" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
-                    </div>
-                    
-                    일정출력
-                    <div class = "todoListContent">
-                        <div class = "index">1</div>
-                        <div class = "timeDisplay" id = "time">10:00</div>
-                        <div class = "todoDisplay" id = "todo">거래처 미팅</div>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div> --%>
-    
+   
     <%-- 개인 정보 수정 모달 --%>
     <div class = "modal" id = "infoFix">
         <div id = "bodyFrame">
