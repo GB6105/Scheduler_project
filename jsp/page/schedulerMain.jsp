@@ -48,7 +48,7 @@
     if(loginPositionIdx == "1"){//팀원일 때
         // 본인 일정 데이터 받아오기
             //TODO
-        String sql2 = "SELECT idx FROM todolist WHERE user_id = ? AND DATE_FORMAT(time,'%y-%M') = ? ORDER BY time ASC";
+        String sql2 = "SELECT idx FROM todolist WHERE user_id = ? AND DATE_FORMAT(time,'%y-%M') = ? ORDER BY time ASC"; //
         PreparedStatement query2 = connect.prepareStatement(sql2);
         query.setString(1,loginId);
         query.setString(2,yearMonth);
