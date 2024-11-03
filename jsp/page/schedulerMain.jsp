@@ -44,18 +44,24 @@
         userDept = infoResult.getString("d.dept_name");
     }
     
+
+    ResultSet myListResult;
     //팀장 팀원 구분하기
     if(loginPositionIdx == "1"){//팀원일 때
         // 본인 일정 데이터 받아오기
             //TODO
-        String sql2 = "SELECT idx FROM todolist WHERE user_id = ? AND DATE_FORMAT(time,'%y-%M') = ? ORDER BY time ASC"; //
-        PreparedStatement query2 = connect.prepareStatement(sql2);
+        // String sql2 = "SELECT idx FROM todolist WHERE user_id = ? AND DATE_FORMAT(time,'%y-%M') = ? ORDER BY time ASC"; //
+        // PreparedStatement query2 = connect.prepareStatement(sql2);
+        // query.setString(1,loginId);
+        // query.setString(2,yearMonth);
+
+
+        // ResultSet todoResult = query.executeQuery();
+
+        String sql1 = "SELECT DATE(time), COUNT(idx) FROM todolist WHERE user_id = ? GROUP BY DATE(time)";
         query.setString(1,loginId);
-        query.setString(2,yearMonth);
-
-
-        ResultSet todoResult = query.executeQuery();
-
+        ResultSet result = query.executeQuery();
+        myListResult = result;
 
     }
     if(loginPositionIdx == "2"){//팀장일 때
@@ -124,7 +130,7 @@
         </div>
         <div id = "schedulerMainFrame">
             <!-- js로 반복문 만들어서 버튼 집어넣어주기 -->
-            <%
+            <%-- <%
                 var j = 1;
                 var dayCount = 30;
 
@@ -145,9 +151,17 @@
                     <div id = "totalTodo"></div>
                 </div>
 
+            <% } %> --%>
+            <%
+                while(myListResult.next()){
+                    
+            %>
+                <div class="importDayContainer" 
+                    onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>day=<%=j%>`, '_blank', 'width=500,height=500,top=200,left=200');">
+                    <%=j%>
+                    <div id = "totalTodo"></div>
+                </div>
             <% } %>
-
-
 
         </div>
     </article>

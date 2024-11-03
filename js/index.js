@@ -6,7 +6,8 @@ checkForm.addEventListener("click",function(){
 
     //유효성 검사를 위한 변수 정규표현식
     const idRegex = /^(?=.*[a-zA-Z0-9]).{2,16}$/;
-    const pwRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/;
+    // const pwRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/;
+    const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
 
     //로컬 시간 받아오기
     var now = new Date();
