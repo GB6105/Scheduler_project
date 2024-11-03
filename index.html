@@ -11,35 +11,27 @@
 <body>
     <h1 id="title">Scheduler for Team</h1>
     <div id="bodyFrame">
-        <form id="loginForm"  action="/scheduler_project/jsp/action/account/loginAction.jsp" method="post">
+        <form id="loginForm" >
             <div class="inputContainer" id="inputIDcontainer">
                 <div class="icon" id = "idIcon"></div>
-                <input id="inputID" name="valueID" placeholder="ID" minlength="2" maxlength="16" pattern="[a-zA-Z0-9]*" required>
+                <input id="inputID" name="valueID" placeholder="ID" required>
             </div>
             <div class="inputContainer" id="inputPWcontainer">
                 <div class="icon" id = "pwIcon"></div>
-                <input type="password" id="inputPW" name="valuePW" placeholder="PW" minlength="8" maxlength="16" pattern="[a-zA-Z0-9~!@#$%^&*]*" required>
+                <input type="password" id="inputPW" name="valuePW" placeholder="PW" required>
             </div>
-            <button type="button" id="loginButton" onclick = "checkForm(event)">login</button>
+            <button type="button" id="loginButton">login</button>
         </form>
         <div id="seperateLine"></div>
         <div id="optionContainer">
-            <button id="signUpButton" onclick="location.href='/scheduler_project/html/account/signUpPage.html'">sign up</button>
+            <button id="signUpButton">sign up</button>
             <div id="findingOption">
-                <button class="findingButton" onclick="location.href='/scheduler_project/html/account/findIdPage.html'">ID 찾기</button>
-                <button class="findingButton" onclick="location.href='/scheduler_project/html/account/findPwPage.html'">PW 찾기</button>
+                <button class="findingButton" id = "findId">ID 찾기</button>
+                <button class="findingButton" id = "findPw">PW 찾기</button>
             </div>
         </div>
     </div>
-    <script>
-            var now = new Date();
-            var year = now.getFullYear();
-            var month = now.getMonth();
-            month += 1;
-            console.log(year);
-            console.log(month);
-
-    </script>
+    
     <script src="/scheduler_project/js/index.js"></script>
 
 </body>
