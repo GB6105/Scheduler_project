@@ -15,7 +15,11 @@ checkForm.addEventListener("click",function(){
     var month = now.getMonth()+1;
 
     //유효성 검사
-    if (idContainer.value === "") {
+
+    //값이 없으면 안넘어가고
+    //값입력할때마다 실시간으로 텍스트로 알려주기
+
+    if (idContainer.value === "" ) {
         idContainer.classList.add("inputError");
         alert("아이디를 입력하세요");
     } else if(!idRegex.test(idContainer.value)){

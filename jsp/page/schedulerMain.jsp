@@ -4,10 +4,19 @@
 <%@ page import = "java.sql.PreparedStatement"%>
 <%@ page import = "java.sql.ResultSet"%>
 <%@ page import = "java.time.LocalDate" %>
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.text.*" %>
+
 <%@ page session = "true" %>
+
 
 <%
     request.setCharacterEncoding("utf-8");
+    //자바를 이용한 코드
+    // long time = System.currentTimeMillis();
+    // SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    // date.format(new Date(time));
+    Date tmp = new Date();
 
     // 세션값 불러오기
     String loginId = (String)session.getAttribute("user_id");
@@ -44,27 +53,19 @@
         userDept = infoResult.getString("d.dept_name");
     }
     
-
     ResultSet myListResult;
+
     //팀장 팀원 구분하기
     if(loginPositionIdx == "1"){//팀원일 때
         // 본인 일정 데이터 받아오기
             //TODO
-        // String sql2 = "SELECT idx FROM todolist WHERE user_id = ? AND DATE_FORMAT(time,'%y-%M') = ? ORDER BY time ASC"; //
-        // PreparedStatement query2 = connect.prepareStatement(sql2);
-        // query.setString(1,loginId);
-        // query.setString(2,yearMonth);
-
-
-        // ResultSet todoResult = query.executeQuery();
 
         String sql1 = "SELECT DATE(time), COUNT(idx) FROM todolist WHERE user_id = ? GROUP BY DATE(time)";
         query.setString(1,loginId);
         ResultSet result = query.executeQuery();
         myListResult = result;
 
-    }
-    if(loginPositionIdx == "2"){//팀장일 때
+    }else if(loginPositionIdx == "2"){//팀장일 때
         // 팀원 일정 데이터 전부 받아오기
             //TODO
     }
@@ -93,6 +94,7 @@
         <div id = "profileImg"></div>
         <article id = "profileContainer">
             <div class = "infoContainer" id = "displayID" ><%=loginId%></div>
+            <%-- <div class = "infoContainer" id = "displayID" ><%=tmp%></div> --%>
             <div class = "infoContainer" id = "displayEmail"><%=userEmail%></div>
             <div class = "infoContainer" id = "displayName"><%=userName%></div>
             <div class = "infoContainer" id = "displayDepartment">부서: <%=userDept%></div>
@@ -153,15 +155,22 @@
 
             <% } %> --%>
             <%
+                Integer day = 1;
                 while(myListResult.next()){
-                    
+                    String date = myListResult.getString("DATE(time)");
+                    String count = myListResult.getString("COUNT(idx)");
+                    // if(count > 0){
+                                            
             %>
-                <div class="importDayContainer" 
-                    onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>day=<%=j%>`, '_blank', 'width=500,height=500,top=200,left=200');">
+                <%-- <div class="importDayContainer" 
+                    onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>day=<%=day%>`, '_blank', 'width=500,height=500,top=200,left=200');">
                     <%=j%>
                     <div id = "totalTodo"></div>
-                </div>
-            <% } %>
+                </div> --%>
+                <div><%=date%></div>
+            <%  
+                    }
+                %>
 
         </div>
     </article>
