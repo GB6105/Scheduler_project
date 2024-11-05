@@ -55,9 +55,9 @@
 
                     <%-- 일정 추가 버튼 --%>
                     <div class = "todoListContent" id = "addTodoList">
-                        <div class = "index" id = "addIndex" onclick = "f()">+</div>
-                        <input class = "timeDisplay" id = "inputTime" placeholder = "00:00"></input>
-                        <input class = "todoDisplay" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
+                        <div class = "index" id = "addIndex" >+</div>
+                        <input class = "timeDisplay" name = "inputTime" id = "inputTime" placeholder = "00:00"></input>
+                        <input class = "todoDisplay" name = "inputTodo" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
                     </div>
                     <%  
                         var idx = 1;
@@ -82,6 +82,7 @@
         </div>
 
     <script src = "/scheduler_project/js/scheduler/scheduler.js"></script>
+    <script src = "/scheduler_project/js/scheduler/contentAction.js"></script>
     <script>
         console.log("<%=loginId%>")
         console.log("<%=yearMonth%>")
