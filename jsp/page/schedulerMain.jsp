@@ -110,18 +110,18 @@
         </div>
         <div id = "schedulerMainFrame">
 
-            <%  
-                String sql1 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN ( SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE user_id = ? AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
-                PreparedStatement query1 = connect.prepareStatement(sql1);
-                query1.setString(1,fullDate);
-                query1.setString(2,loginId);
-                query1.setString(3,yearMonth);
+            <%  if("1".equals(loginPositionIdx)){           
+                    String sql1 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN ( SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE user_id = ? AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
+                    PreparedStatement query1 = connect.prepareStatement(sql1);
+                    query1.setString(1,fullDate);
+                    query1.setString(2,loginId);
+                    query1.setString(3,yearMonth);
 
-                ResultSet result = query1.executeQuery();
+                    ResultSet result = query1.executeQuery();
 
-                while(result.next()){
-                    String day = result.getString("NUM");                                            
-                    String count = result.getString("CNT");
+                    while(result.next()){
+                        String day = result.getString("NUM");                                            
+                        String count = result.getString("CNT");
             %>
                 <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=200,left=200');">
                     <%=day%>
@@ -129,7 +129,27 @@
                 </div>
             <%  
                     }
-                
+                }else if("2".equals(loginDeptIdx)){
+                    // String sql2 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN ( SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE user.position_idx = ? AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
+                    String sql2 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?)) ) SELECT T.NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN (SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist JOIN user ON todolist.user_id = user.id WHERE user.position_idx = ?  AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time) ) B ON T.NUM = B.DATE ORDER BY T.NUM;";
+                    PreparedStatement query2 = connect.prepareStatement(sql2);
+                    query2.setString(1,fullDate);
+                    query2.setString(2,loginId);
+                    query2.setString(3,yearMonth);
+
+                    ResultSet result = query2.executeQuery();
+
+                    while(result.next()){
+                        String day = result.getString("NUM");                                            
+                        String count = result.getString("CNT");
+            %>
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=200,left=200');">
+                    <%=day%>
+                    <div id = "totalTodo"><%=count%></div>
+                </div>
+            <% 
+                   }
+                }
             %>
 
         </div>
