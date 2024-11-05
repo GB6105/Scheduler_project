@@ -28,11 +28,6 @@
     query.setString(2,yearMonth);
     
     ResultSet todoListResult = query.executeQuery();
-    // if(todoListResult.next()){
-    //     time = todoListResult.getString("time");
-    //     content = todoListResult.getString("content");
-
-    // }
 
 
 %>

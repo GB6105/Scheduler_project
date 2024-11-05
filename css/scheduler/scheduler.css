@@ -261,6 +261,10 @@ nav{
 
 /* 날짜 칸 스타일 설정 */
 .importDayContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
     box-sizing: border-box;
     /* width: 200px;*/
     height: 120px;
@@ -270,6 +274,11 @@ nav{
     border:0.2px solid var(--daycontainer-stroke-color);
     padding:0;
     text-indent: 10px;
+}
+#totalTodo{
+    margin-right: 5px;
+    height: fit-content;
+    color : var(--placeholder-color)
 }
 
 /* 팝업창 스타일 설정 */

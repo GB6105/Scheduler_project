@@ -12,11 +12,16 @@
 
 <%
     request.setCharacterEncoding("utf-8");
+    //자바를 이용한 코드
+    // long time = System.currentTimeMillis();
+    // SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    // date.format(new Date(time));
+    // Date tmp = new Date();
 
     // 세션값 불러오기
     String loginId = (String)session.getAttribute("user_id");
-    String loginPositionIdx = (String)session.getAttribute("user_pos_idx"); //인덱스 값으로 받아옴
-    String loginDeptIdx = (String)session.getAttribute("user_dept_idx");
+    String loginPositionIdx = (String)session.getAttribute("user_position"); //인덱스 값으로 받아옴
+    String loginDeptIdx = (String)session.getAttribute("user_dept");
 
     // 개인정보 표시를 위한 변수 설정
     String userId ="";
@@ -31,7 +36,6 @@
     String currMonth = request.getParameter("month");
     String yearMonth = currYear + "-" + currMonth;
     String fullDate = yearMonth + "-" +"01";
-
     Class.forName("org.mariadb.jdbc.Driver");
     Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105");
 
@@ -50,6 +54,30 @@
         userDept = infoResult.getString("d.dept_name");
     }
     
+    // ResultSet myListResult;
+
+    // //팀장 팀원 구분하기
+    // if(loginPositionIdx == "1"){//팀원일 때
+    //     // 본인 일정 데이터 받아오기
+    //         //TODO
+    //     // String sql1 = "SELECT DATE(time), COUNT(idx) FROM todolist WHERE user_id = ? GROUP BY DATE(time)";
+    //     // query.setString(1,loginId);
+
+    //     String sql1 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(CONCAT(?, '-', ?,'-01')))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN (SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE DATE_FORMAT(time, '%Y-%m') = CONCAT(?, '-0', ?) GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
+    //     PreparedStatement query1 = connect.prepareStatement(sql1);
+    //     query1.setString(1,currYear);
+    //     query1.setString(2,currMonth);
+    //     query1.setString(3,currYear);
+    //     query1.setString(4,currMonth);
+
+    //     ResultSet result = query1.executeQuery();
+    //     myListResult = result;
+
+    // }else if(loginPositionIdx == "2"){//팀장일 때
+    //     // 팀원 일정 데이터 전부 받아오기
+    //         //TODO
+    // }
+
 %>
 
 
@@ -74,6 +102,7 @@
         <div id = "profileImg"></div>
         <article id = "profileContainer">
             <div class = "infoContainer" id = "displayID" ><%=loginId%></div>
+            <%-- <div class = "infoContainer" id = "displayID" ><%=tmp%></div> --%>
             <div class = "infoContainer" id = "displayEmail"><%=userEmail%></div>
             <div class = "infoContainer" id = "displayName"><%=userName%></div>
             <div class = "infoContainer" id = "displayDepartment">부서: <%=userDept%></div>
@@ -100,6 +129,7 @@
                     for(i = 1; i<13; i++){
                     var fiexdYear = currYear;
                     var targetMonth = i;
+                
                 %>
                     <button type = "button" id = "monthChangeButton" 
                         onclick = "location.href = '/scheduler_project/jsp/page/schedulerMain.jsp?year='+<%=fiexdYear%>+'&month='+<%=targetMonth%>">
@@ -109,28 +139,54 @@
             </div>
         </div>
         <div id = "schedulerMainFrame">
+            <!-- js로 반복문 만들어서 버튼 집어넣어주기 -->
+            <%-- <%
+                var j = 1;
+                var dayCount = 30;
 
-            <%  
-                String sql1 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN ( SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE user_id = ? AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
+                if("2".equals(currMonth)){
+                    dayCount = 29; // 28일
+                }else if("4".equals(currMonth)||"6".equals(currMonth)||"9".equals(currMonth)||"11".equals(currMonth)){
+                    dayCount = 31;  // 30일
+                }else{
+                    dayCount = 32; // 31일
+                }
+
+                for(j = 1; j < dayCount; j++){
+                    // while(todoListResult.nest())
+            %>   
+                <div class="importDayContainer" 
+                    onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?day=<%=j%>&year=<%=currYear%>&month=<%=currMonth%>`, '_blank', 'width=500,height=500,top=200,left=200');">
+                    <%=j%>
+                    <div id = "totalTodo"></div>
+                </div>
+
+            <% } %> --%>
+            <%
+                //if(loginPositionIdx == "1"){//팀원일 때
+                    
+                String sql1 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN ( SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
                 PreparedStatement query1 = connect.prepareStatement(sql1);
                 query1.setString(1,fullDate);
-                query1.setString(2,loginId);
-                query1.setString(3,yearMonth);
+                query1.setString(2,yearMonth);
 
                 ResultSet result = query1.executeQuery();
 
                 while(result.next()){
                     String day = result.getString("NUM");                                            
                     String count = result.getString("CNT");
+                    // out.println("<script>console.log(day);</script>");
             %>
                 <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=200,left=200');">
                     <%=day%>
-                    <div id = "totalTodo"><%=count%></div>
+                    <div id = "totalTodo"></div>
                 </div>
+                
+
             <%  
                     }
-                
-            %>
+                //}
+                %>
 
         </div>
     </article>
@@ -176,7 +232,6 @@
     <script src = "/scheduler_project/js/scheduler/scheduler.js"></script>
     <script>
         console.log("<%=loginId%>")
-        console.log("<%=loginPositionIdx%>")
         console.log("<%=userPosition%>")
         console.log("<%=currYear%>")
         console.log("<%=currMonth%>")
