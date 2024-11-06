@@ -123,14 +123,13 @@
                         String day = result.getString("NUM");                                            
                         String count = result.getString("CNT");
             %>
-                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=200,left=200');">
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500');">
                     <%=day%>
                     <div id = "totalTodo"><%=count%></div>
                 </div>
             <%  
                     }
                 }else if("2".equals(loginDeptIdx)){
-                    // String sql2 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?))) SELECT NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN ( SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist WHERE user.position_idx = ? AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time)) B ON NUM = B.DATE ORDER BY NUM";
                     String sql2 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?)) ) SELECT T.NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN (SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist JOIN user ON todolist.user_id = user.id WHERE user.position_idx = ?  AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time) ) B ON T.NUM = B.DATE ORDER BY T.NUM;";
                     PreparedStatement query2 = connect.prepareStatement(sql2);
                     query2.setString(1,fullDate);
@@ -143,7 +142,7 @@
                         String day = result.getString("NUM");                                            
                         String count = result.getString("CNT");
             %>
-                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=200,left=200');">
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=100,left=100');">
                     <%=day%>
                     <div id = "totalTodo"><%=count%></div>
                 </div>

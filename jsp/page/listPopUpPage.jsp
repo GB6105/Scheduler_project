@@ -13,7 +13,7 @@
     String day = request.getParameter("day");
     String year = request.getParameter("year");
     String month = request.getParameter("month");
-    String yearMonth = year+"-"+month+"-"+day;
+    String fullDateValue = year+"-"+month+"-"+day;
 
     String time = "";
     String content = "";
@@ -25,7 +25,7 @@
     String sql = "SELECT DATE_FORMAT(time,'%H:%i') AS time,content FROM todolist WHERE user_id = ? AND DATE(time) = ? ORDER BY time ASC";
     PreparedStatement query = connect.prepareStatement(sql);
     query.setString(1,loginId);
-    query.setString(2,yearMonth);
+    query.setString(2,fullDateValue);
     
     ResultSet todoListResult = query.executeQuery();
 
@@ -59,6 +59,8 @@
                         <input class = "timeDisplay" name = "inputTime" id = "inputTime" placeholder = "00:00"></input>
                         <input class = "todoDisplay" name = "inputTodo" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
                     </div>
+
+                    <%-- 리스트 보여주기 --%>
                     <%  
                         var idx = 1;
                         while(todoListResult.next()){
@@ -80,15 +82,21 @@
 
             </div>
         </div>
-
-    <script src = "/scheduler_project/js/scheduler/scheduler.js"></script>
-    <script src = "/scheduler_project/js/scheduler/contentAction.js"></script>
     <script>
+        var addButton = document.getElementById("addIndex");
+        addButton.addEventListener('click', function(){
+            var timeValue = document.getElementById("inputTime").value;
+            var contentValue = document.getElementById("inputTodo").value;            
+            location.href = "/scheduler_project/jsp/action/scheduler/addTodoAction.jsp?time=" + timeValue + "&content=" + contentValue + "&fullDate=" + "<%=fullDateValue%>";
+        })
+    </script>
+    <script src = "/scheduler_project/js/scheduler/contentAction.js"></script>
+    <%-- <script>
         console.log("<%=loginId%>")
-        console.log("<%=yearMonth%>")
+        console.log("<%=fullDateValue%>")
         console.log("<%=time%>")
         console.log("<%=content%>")
         
-    </script>
+    </script> --%>
 </body>
 </html>
