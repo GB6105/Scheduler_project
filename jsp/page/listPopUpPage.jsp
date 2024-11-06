@@ -22,7 +22,7 @@
     Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105");
 
     //해당 날짜 일정 가져오기
-    String sql = "SELECT DATE_FORMAT(time,'%H:%i') AS time,content FROM todolist WHERE user_id = ? AND DATE(time) = ? ORDER BY time ASC";
+    String sql = "SELECT idx,DATE_FORMAT(time,'%H:%i') AS time,content FROM todolist WHERE user_id = ? AND DATE(time) = ? ORDER BY time ASC";
     PreparedStatement query = connect.prepareStatement(sql);
     query.setString(1,loginId);
     query.setString(2,fullDateValue);
@@ -55,7 +55,7 @@
 
                     <%-- 일정 추가 버튼 --%>
                     <div class = "todoListContent" id = "addTodoList">
-                        <div class = "index" id = "addIndex" >+</div>
+                        <div class = "index" id = "addIndex" onclick = "addTodo('<%=fullDateValue%>')">+</div>
                         <input class = "timeDisplay" name = "inputTime" id = "inputTime" placeholder = "00:00"></input>
                         <input class = "todoDisplay" name = "inputTodo" id = "inputTodo" placeholder ="일정을 입력하세요"></input>
                     </div>
@@ -64,13 +64,19 @@
                     <%  
                         var idx = 1;
                         while(todoListResult.next()){
+                            String idxValue = todoListResult.getString("idx");
                             String timeValue = todoListResult.getString("time");
                             String contentValue = todoListResult.getString("content");
                     %>
-                        <div class = "todoListContent">
+                        <div class = "todoListContent" id = "contentBox_<%=idx%>" onmouseover = "focusIn(<%=idx%>)" onmouseleave = "foucusOut(<%=idx%>)">
                             <div class = "index"><%=idx%></div>
                             <div class = "timeDisplay" id = "time"><%=timeValue%></div>
                             <div class = "todoDisplay" id = "todo"><%=contentValue%></div>
+                            <div class = "optionContainer" id = "optionContainer_<%=idx%>">
+                                <button id = "fixContent" class = "optionButton" onclick = "fixTodo(event)"></button>
+                                <button id = "deleteContent" class = "optionButton" onclick = "deleteTodo(<%=idxValue%>,'<%=fullDateValue%>')"></button>
+                                
+                            </div>
                         </div>
                         
                     <% 
@@ -82,21 +88,8 @@
 
             </div>
         </div>
-    <script>
-        var addButton = document.getElementById("addIndex");
-        addButton.addEventListener('click', function(){
-            var timeValue = document.getElementById("inputTime").value;
-            var contentValue = document.getElementById("inputTodo").value;            
-            location.href = "/scheduler_project/jsp/action/scheduler/addTodoAction.jsp?time=" + timeValue + "&content=" + contentValue + "&fullDate=" + "<%=fullDateValue%>";
-        })
-    </script>
+
     <script src = "/scheduler_project/js/scheduler/contentAction.js"></script>
-    <%-- <script>
-        console.log("<%=loginId%>")
-        console.log("<%=fullDateValue%>")
-        console.log("<%=time%>")
-        console.log("<%=content%>")
-        
-    </script> --%>
+
 </body>
 </html>

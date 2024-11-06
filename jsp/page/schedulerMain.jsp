@@ -6,9 +6,7 @@
 <%@ page import = "java.time.LocalDate" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
-
 <%@ page session = "true" %>
-
 
 <%
     request.setCharacterEncoding("utf-8");
@@ -67,10 +65,14 @@
 <body>
     <nav id = "leftSideMenu">
         <button class = "sideMenuButton" id = "menuUnfoldButton" onclick =showSideMenu(event)></button>
+        <button class = "sideMenuButton" id = "logOutButton" onclick ="logout()"></button>
     </nav>
 
     <nav id = "sideMenuUnfolded">
-        <button class = "sideMenuButton" id = "menuFoldButton" onclick =hideSideMenu(event)></button>
+        <div id ="sideHeader">
+            <button class = "sideMenuButton" id = "menuFoldButton" onclick =hideSideMenu(event)></button>
+            <button class = "sideMenuButton" id = "logOutButton" onclick ="logout()"></button>
+        </div>
         <div id = "profileImg"></div>
         <article id = "profileContainer">
             <div class = "infoContainer" id = "displayID" ><%=loginId%></div>
@@ -129,11 +131,11 @@
                 </div>
             <%  
                     }
-                }else if("2".equals(loginDeptIdx)){
-                    String sql2 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?)) ) SELECT T.NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN (SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist JOIN user ON todolist.user_id = user.id WHERE user.position_idx = ?  AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time) ) B ON T.NUM = B.DATE ORDER BY T.NUM;";
+                }else if("2".equals(loginPositionIdx)){
+                    String sql2 = "WITH RECURSIVE T AS (SELECT 1 AS NUM UNION ALL SELECT NUM + 1 FROM T WHERE NUM < DAY(LAST_DAY(?)) ) SELECT T.NUM, IFNULL(B.CNT, 0) AS CNT FROM T LEFT OUTER JOIN (SELECT COUNT(*) AS CNT, DAY(time) AS DATE FROM todolist JOIN user ON todolist.user_id = user.id WHERE user.dept_idx = ?  AND DATE_FORMAT(time, '%Y-%m') = ? GROUP BY DAY(time) ) B ON T.NUM = B.DATE ORDER BY T.NUM;";
                     PreparedStatement query2 = connect.prepareStatement(sql2);
                     query2.setString(1,fullDate);
-                    query2.setString(2,loginId);
+                    query2.setString(2,loginDeptIdx);
                     query2.setString(3,yearMonth);
 
                     ResultSet result = query2.executeQuery();

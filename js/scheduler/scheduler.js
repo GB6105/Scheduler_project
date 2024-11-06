@@ -21,6 +21,13 @@ function hideSideMenu(e){
 }
 
 
+function logout(){
+    var checked = confirm("로그아웃 하시겠습니까?");
+    if(checked == true){
+        location.href = "/scheduler_project/jsp/action/account/logoutAction.jsp";
+    }
+}
+
 function showFixInfoPopup(event){
     var popup = document.getElementById("infoFix");
     popup.style.display = "flex";    
@@ -31,9 +38,7 @@ function hideFixInfoPopup(evnet){
     popup.style.display = "none";  
 }
 
-// function f(){
-//    alert("버튼을 눌렀습니다.")
-// }
+
 
 function listPopup(event){
     var todoListPopup = document.getElementById("todoList");

@@ -22,7 +22,7 @@
     Connection connect = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scheduler","GB","6105");
 
     //DB에서 정보받아오기
-    String sql = "SELECT position_idx,dept_idx FROM user WHERE id = ? AND pw =?";
+    String sql = "SELECT position_idx,dept_idx,name FROM user WHERE id = ? AND pw =?";
     PreparedStatement query = connect.prepareStatement(sql);
     query.setString(1,input_id);
     query.setString(2,input_pw);
@@ -35,12 +35,13 @@
         //세션에 현재 로그인 유저 정보 저장
         String userPos = result.getString("position_idx");
         String userDept = result.getString("dept_idx");
+        String userName = result.getString("name");
         session.setAttribute("user_id",input_id);
         session.setAttribute("user_pos_idx",userPos);
         session.setAttribute("user_dept_idx",userDept);
 
         //메인 페이지로 이동
-        out.println("<script>alert('로그인에 성공하였습니다'); location.href = '/scheduler_project/jsp/page/schedulerMain.jsp?year=" + yearValue + "&month=" + monthValue + "'; </script>");
+        out.println("<script>alert('로그인되었습니다. 반갑습니다 "+ userName +"님'); location.href = '/scheduler_project/jsp/page/schedulerMain.jsp?year=" + yearValue + "&month=" + monthValue + "'; </script>");
         out.flush();
         
     }else{// 결과가 반환되지 않는 경우(해당 정보 부재)
@@ -51,4 +52,6 @@
 
     String from_session_id  = (String)session.getAttribute("user_id");
 
+
+    session.setMaxInactiveInterval(3600); //세션 시간 1 시간
 %>

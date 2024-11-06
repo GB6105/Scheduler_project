@@ -11,6 +11,8 @@
     --todoList-color-text: rgba(255, 165, 21, 1);
     --addtodoList-color-index: #d9d9d9;
     --addtodoList-color-body: #f3f3f3;
+    --error-border-color: #ff5656;
+    --error-background-color: #ffd0d0;
     
     /* 사이즈 */
     --scheduler-body-size-width: 1610px;
@@ -140,6 +142,12 @@ nav{
 }
 
 /* ---------------------------------------------------------------------------- */
+
+#leftSideMenu{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 /* 사이드메뉴 활성화(비활성화) 버튼 */
 .sideMenuButton{
     /* 속성 */
@@ -150,30 +158,53 @@ nav{
     height: 40px;
     border:none;
     /* background-color: var(--background-color-sidemenu); */
-    background-color: rgba(0,0,0,0);
-    background-image: url("/scheduler_project/asset/icon/three_line_menu.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     
     /* 임시 설정 */
     /* border:1px solid black; */
 }
 
+#menuUnfoldButton,#menuFoldButton{
+    background-color: rgba(0,0,0,0);
+    background-image: url("/scheduler_project/asset/icon/three_line_menu.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#logOutButton{
+    background-color: rgba(0,0,0,0);
+    background-image: url("/scheduler_project/asset/icon/logout.png");
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+
 /* 사이드메뉴(펼쳐짐) 스타일 설정 */
 #sideMenuUnfolded{
-    display: flex;
+    /* 속성 */
     display:none;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     
+    /* 디자인 */
     width: 300px;
     height: 100%;
     border:none;
     background-color: var(--background-color-sidemenu);
 }
 
+#sideHeader{
+    /* 속성 */
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    /* 디자인 */
+    width: 100%;
+
+}
 
 /* 프로필 이미지  */
 #profileImg{
@@ -366,6 +397,7 @@ nav{
     /* 속성 */
     display: flex;
     align-items: center;
+    position: relative;
 
     /* 디자인 */
     width: 100%;
@@ -433,4 +465,45 @@ nav{
 #inputTime::placeholder{
     text-indent: 0;
     text-align: center;
+}
+
+
+.optionContainer{
+    display: none;
+    /* display: flex; */
+    flex-wrap: wrap;
+    position: absolute;
+    right: 0;
+    width: 80px;
+    height: 40px;
+    padding:0;
+}
+
+
+.optionButton{
+    
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    padding:0;
+}
+
+
+#fixContent{
+    margin-right: 10px;
+    background-color: var(--addtodoList-color-body);
+    background-image: url("/scheduler_project/asset/icon/pencil.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    
+}
+
+#deleteContent{
+    background-color: var(--error-border-color);
+    background-image: url(/scheduler_project/asset/icon/delete-red-background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
 }
