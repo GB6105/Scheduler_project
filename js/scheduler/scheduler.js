@@ -50,3 +50,19 @@ function listPopup(event){
         }
     });
 }
+
+// function f(idx){
+//     var cntDisplay = document.getElementById("totalTodo_"+idx);
+//     var cnt = cntDisplay.innerHTML;
+//     if(cnt != 0){
+//         cntDisplay.style.display = "none";
+//     }
+// }
+
+function f(idx) {
+    var cntDisplay = document.getElementById("totalTodo_" + idx);
+    var cnt = parseInt(cntDisplay.innerHTML, 10); // 문자열을 숫자로 변환
+    if (cnt === 0) {
+        cntDisplay.style.display = "none";
+    }
+}

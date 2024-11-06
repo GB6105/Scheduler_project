@@ -136,9 +136,11 @@ nav{
 }
 
 #monthChangeButton{
-    width:20px;
-    height:20px;
+    width:30px;
+    height:30px;
+    border-radius: 5px;
     margin-right: 10px;
+    background-color: var(--addtodoList-color-body);
 }
 
 /* ---------------------------------------------------------------------------- */
@@ -306,10 +308,12 @@ nav{
     padding:0;
     text-indent: 10px;
 }
-#totalTodo{
-    margin-right: 5px;
+.totalTodo{
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
     height: fit-content;
-    color : var(--placeholder-color)
+    color : var(--error-border-color)
 }
 
 /* 팝업창 스타일 설정 */
