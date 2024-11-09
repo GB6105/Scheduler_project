@@ -11,7 +11,6 @@
     String loginId = (String)session.getAttribute("user_id");
     String loginPositionIdx = (String)session.getAttribute("user_pos_idx"); //인덱스 값으로 받아옴
 
-
     String day = request.getParameter("day");
     String year = request.getParameter("year");
     String month = request.getParameter("month");
@@ -91,6 +90,9 @@
                     %>                    
                 </div>
             </div>
+        <%
+            if("2".equals(loginPositionIdx)){
+        %>
             <div class = "todoListUp" id = "leaderListUp">
                 <div id = "listHeader">
                     팀의 일정
@@ -115,6 +117,10 @@
                     %>                    
                 </div>
             </div>
+        <%
+            }
+        
+        %>
         </div>
 
     <script src = "/scheduler_project/js/scheduler/contentAction.js"></script>
