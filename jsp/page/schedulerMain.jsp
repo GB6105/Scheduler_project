@@ -125,7 +125,7 @@
                         String day = result.getString("NUM");                                            
                         String count = result.getString("CNT");
             %>
-                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500');">
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=1000,height=1000');">
                     <%=day%>
                     <div class = "totalTodo" id = "totalTodo_<%=day%>"><%=count%></div>
                 </div>
@@ -157,8 +157,21 @@
             %>
                 <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=100,left=100');">
                     <%=day%>
-                    <div id = "totalTodo"><%=count%></div>
+                    <%-- <div id = "totalTodo"><%=count%></div> --%>
+                    <div class = "totalTodo" id = "totalTodo_<%=day%>"><%=count%></div>
+
                 </div>
+                <script>
+                    function f(idx) {
+                        var cntDisplay = document.getElementById("totalTodo_" + idx);
+                        var cnt = parseInt(cntDisplay.innerHTML, 10); 
+                        console.log(cnt);
+                        if (cnt === 0) {
+                            cntDisplay.style.display = "none";
+                        }
+                    }
+                    f(<%=day%>);
+                </script>
             <% 
                    }
                 }

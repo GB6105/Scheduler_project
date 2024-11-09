@@ -1,6 +1,6 @@
 var checkForm = document.getElementById("loginButton");
-checkForm.addEventListener("click",function(){
-    var form = document.getElementById("loginForm");
+var form = document.getElementById("loginForm");
+function checkAndSubmit(){
     var idContainer = document.getElementById("inputID");
     var pwContainer = document.getElementById("inputPW");
 
@@ -53,8 +53,14 @@ checkForm.addEventListener("click",function(){
         }
     }
     
+};
+checkForm.addEventListener("click",checkAndSubmit);
+form.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); 
+        checkAndSubmit();
+    }
 });
-
 
 //회원 가입 페이지 이동
 var signUpLink = document.getElementById("signUpButton");
