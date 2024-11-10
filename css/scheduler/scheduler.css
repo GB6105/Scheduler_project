@@ -523,3 +523,10 @@ nav{
     background-repeat: no-repeat;
     background-size: 80%;
 }
+
+#viewOptionButton{
+    display:hidden;
+    width:80px;
+    height:30px;
+    border:1px solid black;
+}

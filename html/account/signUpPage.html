@@ -12,9 +12,9 @@
     <h1 id = "title">Sign Up Page</h1>
     <div id = "bodyFrame">
         <form id = "inputForm" action = "/scheduler_project/jsp/action/account/signUpAction.jsp" method = "post">
-            <input class = "inputContainer" name = "id" id = "inputId" placeholder = "ID를 입력해주세요(2~10글자)" minlength="2" maxlength="16" pattern = "[a-zA-Z0-9]*" required>
-            <input class = "inputContainer" name = "pw" id = "inputPw" placeholder = "비밀번호를 입력해주세요(8~16글자)" minlength ="8" maxlength = "16" pattern="[a-zA-Z0-9~!@#$%^&*]*" required>
-            <input class = "inputContainer" name = "name" id = "inputName" placeholder = "이름을 입력해주세요" minlength="3" maxlength="5" pattern = "[ㄱ-ㅎ가-힣a-zA-Z0-9]*" required>
+            <input class = "inputContainer" name = "id" id = "inputId" placeholder = "ID를 입력해주세요(2~10글자)" >
+            <input class = "inputContainer" name = "pw" id = "inputPw" placeholder = "비밀번호를 입력해주세요(8~16글자)" >
+            <input class = "inputContainer" name = "name" id = "inputName" placeholder = "이름을 입력해주세요" >
             <div id = "deptAndPosition">
                 <select class = "select" name = "department" id = "departmentSelect" required>
                     <option value = ""> 부서</option>
@@ -29,7 +29,7 @@
             </div>
             
             <div id = "email">
-                <input class = "inputContainer" name = "email" id = "inputEmail" pattern = "[a-zA-Z0-9]*" required>@
+                <input class = "inputContainer" name = "email" id = "inputEmail" required>@
                 <select class = "select" name = "domain" id = "domainSelect" required>
                     <option value = "">선택하세요</option>
                     <option value = "@google.com">google.com</option>

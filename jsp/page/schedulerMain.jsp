@@ -94,6 +94,14 @@
                     <button type = "button" class = "changeYearButton" id = "nextYearButton" onclick = "nextYear(event)"></button>
                 </div>
                 <div id = "monthContainer"><%=currMonth%>월</div>
+                <%
+                    if("2".equals(loginPositionIdx)){
+                %>
+                    <div id ="viewOptionButton" onclick = "changeListView()">
+                    </div>
+                <%
+                    }
+                %>
             </div>
             <div id = "monthList">
                 <%-- 백엔드 통신 이용해서 월 변경 버튼 생성 --%>
@@ -125,7 +133,7 @@
                         String day = result.getString("NUM");                                            
                         String count = result.getString("CNT");
             %>
-                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=1000,height=1000');">
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=800,height=1000');">
                     <%=day%>
                     <div class = "totalTodo" id = "totalTodo_<%=day%>"><%=count%></div>
                 </div>
@@ -155,7 +163,7 @@
                         String day = result.getString("NUM");                                            
                         String count = result.getString("CNT");
             %>
-                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=500,height=500,top=100,left=100');">
+                <div class="importDayContainer" onclick="window.open(`/scheduler_project/jsp/page/listPopUpPage.jsp?&year=<%=currYear%>&month=<%=currMonth%>&day=<%=day%>`, '_blank', 'width=800,height=1000');">
                     <%=day%>
                     <%-- <div id = "totalTodo"><%=count%></div> --%>
                     <div class = "totalTodo" id = "totalTodo_<%=day%>"><%=count%></div>
@@ -226,6 +234,14 @@
         console.log("<%=currYear%>")
         console.log("<%=currMonth%>")
         <%-- console.log("<%=M%>") --%>
+
+        function changeListView(){
+            <%
+                session.setAttribute("viewOption",2);
+            %>
+            alert
+        }
+
 
         function prevYear(event){
             var yearMinus = <%=currYear%> - 1;

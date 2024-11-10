@@ -51,13 +51,6 @@ function listPopup(event){
     });
 }
 
-// function f(idx){
-//     var cntDisplay = document.getElementById("totalTodo_"+idx);
-//     var cnt = cntDisplay.innerHTML;
-//     if(cnt != 0){
-//         cntDisplay.style.display = "none";
-//     }
-// }
 
 function f(idx) {
     var cntDisplay = document.getElementById("totalTodo_" + idx);
